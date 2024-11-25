@@ -17,6 +17,7 @@ namespace Implementacion_Mantenimiento.Controllers
             return View();
         }
 
+        [HttpGet]
         public JsonResult ListarUsuarios()
         {
             List<Usuarios> oLista = new List<Usuarios>();

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CapaDatos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,6 +13,13 @@ namespace Implementacion_Mantenimiento.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+
+        public JsonResult ListarRoles()
+        {
+            CD_Roles negocioRoles = new CD_Roles();
+            List<Roles> listaRoles = negocioRoles.Listar();
+            return Json(listaRoles, JsonRequestBehavior.AllowGet);
         }
     }
 }
