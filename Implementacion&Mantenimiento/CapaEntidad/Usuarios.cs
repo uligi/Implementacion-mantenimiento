@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace CapaEntidad
 {
-    internal class Usuarios
+    public class Usuarios
     {
         public int UsuarioID { get; set; }
 
         public int PersonaID { get; set; }
 
-        public int RolId { get; set; }
+        public int RolID { get; set; }
 
         public string Contrasena { get; set; }
 

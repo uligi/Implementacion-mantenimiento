@@ -1,95 +1,109 @@
 use PatitosSA;
 GO
 
-CREATE PROCEDURE spGestionarUsuario
-    @Operacion NVARCHAR(10), -- CREATE, READ, UPDATE, DELETE
-    @UsuarioID INT = NULL, -- Obligatorio para UPDATE y DELETE
-    @PersonaID INT = NULL, -- Obligatorio para CREATE
-    @RolID INT = NULL, -- Obligatorio para CREATE y UPDATE
-    @Contrasena NVARCHAR(255) = NULL, -- Obligatorio para CREATE y UPDATE
-    @Activo BIT = NULL -- Obligatorio para UPDATE y DELETE
+CREATE PROCEDURE spListarUsuariosYPersonas
 AS
 BEGIN
     SET NOCOUNT ON;
 
-    IF @Operacion = 'CREATE'
-    BEGIN
-        IF @PersonaID IS NULL OR @RolID IS NULL OR @Contrasena IS NULL
-        BEGIN
-            THROW 50000, 'Faltan parámetros obligatorios para la creación.', 1;
-        END
-
-        INSERT INTO Usuarios (PersonaID, RolID, Contrasena, Activo)
-        VALUES (@PersonaID, @RolID, @Contrasena, 1);
-
-        SELECT SCOPE_IDENTITY() AS UsuarioID; -- Devuelve el ID del nuevo usuario
-    END
-
-    ELSE IF @Operacion = 'READ'
-    BEGIN
-        IF @UsuarioID IS NULL
-        BEGIN
-            -- Leer todos los usuarios activos
-            SELECT 
-                U.UsuarioID,
-                P.NombreCompleto,
-                P.Correo,
-                R.Nombre AS Rol,
-                U.Activo
-            FROM Usuarios U
-            JOIN Personas P ON U.PersonaID = P.PersonaID
-            JOIN Roles R ON U.RolID = R.RolID
-            WHERE U.Activo = 1;
-        END
-        ELSE
-        BEGIN
-            -- Leer un usuario específico
-            SELECT 
-                U.UsuarioID,
-                P.NombreCompleto,
-                P.Correo,
-                R.Nombre AS Rol,
-                U.Activo
-            FROM Usuarios U
-            JOIN Personas P ON U.PersonaID = P.PersonaID
-            JOIN Roles R ON U.RolID = R.RolID
-            WHERE U.UsuarioID = @UsuarioID;
-        END
-    END
-
-    ELSE IF @Operacion = 'UPDATE'
-    BEGIN
-        IF @UsuarioID IS NULL OR @RolID IS NULL OR @Contrasena IS NULL OR @Activo IS NULL
-        BEGIN
-            THROW 50000, 'Faltan parámetros obligatorios para la actualización.', 1;
-        END
-
-        UPDATE Usuarios
-        SET 
-            RolID = @RolID,
-            Contrasena = @Contrasena,
-            Activo = @Activo
-        WHERE UsuarioID = @UsuarioID;
-
-        SELECT 'Usuario actualizado correctamente' AS Mensaje;
-    END
-
-    ELSE IF @Operacion = 'DELETE'
-    BEGIN
-        IF @UsuarioID IS NULL OR @Activo IS NULL
-        BEGIN
-            THROW 50000, 'Faltan parámetros obligatorios para la eliminación lógica.', 1;
-        END
-
-        UPDATE Usuarios
-        SET Activo = @Activo
-        WHERE UsuarioID = @UsuarioID;
-
-        SELECT 'Usuario eliminado lógicamente' AS Mensaje;
-    END
-
-    ELSE
-    BEGIN
-        THROW 50000, 'Operación no válida. Use CREATE, READ, UPDATE o DELETE.', 1;
-    END
+    SELECT 
+        U.UsuarioID,
+        P.PersonaID,
+        P.NombreCompleto,
+        P.Cedula,
+        P.Correo,
+        P.Telefono,
+        P.Direccion,
+        R.Nombre AS Rol,
+        U.Activo
+    FROM Usuarios U
+    JOIN Personas P ON U.PersonaID = P.PersonaID
+    JOIN Roles R ON U.RolID = R.RolID
+    WHERE U.Activo = 1; -- Solo usuarios activos
 END;
+GO
+
+CREATE PROCEDURE spCrearPersonaYUsuario
+    @NombreCompleto NVARCHAR(100),
+    @Cedula NVARCHAR(20),
+    @Correo NVARCHAR(100),
+    @Telefono NVARCHAR(15) = NULL,
+    @Direccion TEXT = NULL,
+    @RolID INT,
+    @Contrasena NVARCHAR(255)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DECLARE @PersonaID INT;
+
+    -- Insertar Persona
+    INSERT INTO Personas (NombreCompleto, Cedula, Correo, Telefono, Direccion, Activo)
+    VALUES (@NombreCompleto, @Cedula, @Correo, @Telefono, @Direccion, 1);
+
+    SET @PersonaID = SCOPE_IDENTITY(); -- Obtener el ID de la Persona recién creada
+
+    -- Insertar Usuario relacionado
+    INSERT INTO Usuarios (PersonaID, RolID, Contrasena, Activo)
+    VALUES (@PersonaID, @RolID, @Contrasena, 1);
+
+    SELECT @PersonaID AS PersonaID, SCOPE_IDENTITY() AS UsuarioID; -- Devolver IDs generados
+END;
+GO
+
+CREATE PROCEDURE spModificarPersonaYUsuario
+    @PersonaID INT,
+    @UsuarioID INT,
+    @NombreCompleto NVARCHAR(100),
+    @Cedula NVARCHAR(20),
+    @Correo NVARCHAR(100),
+    @Telefono NVARCHAR(15) = NULL,
+    @Direccion TEXT = NULL,
+    @RolID INT,
+    @Contrasena NVARCHAR(255),
+    @Activo BIT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Actualizar Persona
+    UPDATE Personas
+    SET 
+        NombreCompleto = @NombreCompleto,
+        Cedula = @Cedula,
+        Correo = @Correo,
+        Telefono = @Telefono,
+        Direccion = @Direccion
+    WHERE PersonaID = @PersonaID;
+
+    -- Actualizar Usuario
+    UPDATE Usuarios
+    SET 
+        RolID = @RolID,
+        Contrasena = @Contrasena,
+        Activo = @Activo
+    WHERE UsuarioID = @UsuarioID;
+
+    SELECT 'Persona y Usuario actualizados correctamente' AS Mensaje;
+END;
+GO
+CREATE PROCEDURE spEliminarPersonaYUsuario
+    @PersonaID INT,
+    @UsuarioID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Eliminar lógicamente la Persona
+    UPDATE Personas
+    SET Activo = 0
+    WHERE PersonaID = @PersonaID;
+
+    -- Eliminar lógicamente el Usuario
+    UPDATE Usuarios
+    SET Activo = 0
+    WHERE UsuarioID = @UsuarioID;
+
+    SELECT 'Persona y Usuario eliminados lógicamente' AS Mensaje;
+END;
+GO

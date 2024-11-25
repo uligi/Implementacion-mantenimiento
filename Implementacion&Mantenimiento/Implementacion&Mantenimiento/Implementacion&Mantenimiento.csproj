@@ -229,6 +229,7 @@
     <Content Include="Views\Roles\Index.cshtml" />
     <Content Include="Views\Tareas\Index.cshtml" />
     <Content Include="Views\Reportes\Index.cshtml" />
+    <Content Include="Views\Home\test.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -274,6 +275,9 @@
       <Project>{0021df23-2658-4380-b691-2c594efaf756}</Project>
       <Name>CapaNegocio</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
