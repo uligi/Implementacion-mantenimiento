@@ -1,33 +1,57 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Inicio - Patitos S.A.";
 }
 
-<main>
-    <section class="row" aria-labelledby="aspnetTitle">
-        <h1 id="title">ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-        <p><a href="https://asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
-    </section>
+<main class="container my-5">
+    <!-- Encabezado principal -->
+    <header class="text-center mb-5">
+        <img src="images/logo.png" alt="Logo de Patitos S.A." style="width: 100px; height: auto;">
+        <h1 class="mt-3">Bienvenido a Patitos S.A.</h1>
+        <p class="lead text-muted">La plataforma de gestión para proyectos y tareas diseñada para ti.</p>
+    </header>
 
-    <div class="row">
-        <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-            <h2 id="gettingStartedTitle">Getting started</h2>
-            <p>
-                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and gives you full control over markup
-                for enjoyable, agile development.
-            </p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+    <!-- Sección de enlaces principales -->
+    <div class="row text-center justify-content-center">
+        <section class="col-md-4 mb-4">
+            <div class="card border-primary shadow">
+                <div class="card-body">
+                    <h2 class="card-title">Proyectos</h2>
+                    <p class="card-text">Gestiona y visualiza los proyectos activos y sus avances.</p>
+                    <a href="/Proyectos/Index" class="btn btn-primary">Ir a Proyectos</a>
+                </div>
+            </div>
         </section>
-        <section class="col-md-4" aria-labelledby="librariesTitle">
-            <h2 id="librariesTitle">Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+
+        <section class="col-md-4 mb-4">
+            <div class="card border-success shadow">
+                <div class="card-body">
+                    <h2 class="card-title">Tareas</h2>
+                    <p class="card-text">Consulta las tareas asignadas y actualiza su estado.</p>
+                    <a href="/Tareas/Index" class="btn btn-success">Ir a Tareas</a>
+                </div>
+            </div>
         </section>
-        <section class="col-md-4" aria-labelledby="hostingTitle">
-            <h2 id="hostingTitle">Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-        </section>
+
+        @if (User.IsInRole("Admin"))
+        {
+            <section class="col-md-4 mb-4">
+                <div class="card border-warning shadow">
+                    <div class="card-body">
+                        <h2 class="card-title">Usuarios</h2>
+                        <p class="card-text">Administra los usuarios y roles del sistema.</p>
+                        <a href="/Usuarios/Index" class="btn btn-warning">Gestionar Usuarios</a>
+                    </div>
+                </div>
+            </section>
+        }
     </div>
+
+    <!-- Información adicional -->
+    <section class="mt-5 text-center">
+        <h3>¿Por qué elegir Patitos S.A.?</h3>
+        <p class="text-muted">
+            En Patitos S.A., te ayudamos a organizar y gestionar tus proyectos con herramientas simples y eficientes.
+            <br>Optimiza tu tiempo y enfócate en lo que realmente importa.
+        </p>
+    </section>
 </main>

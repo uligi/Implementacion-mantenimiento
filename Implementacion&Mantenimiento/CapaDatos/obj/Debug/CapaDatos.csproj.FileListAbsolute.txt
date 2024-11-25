@@ -1,0 +1,9 @@
+C:\Users\ul13m\Documents\GitHub\Implementacion-mantenimiento\Implementacion&Mantenimiento\CapaDatos\bin\Debug\CapaDatos.dll
+C:\Users\ul13m\Documents\GitHub\Implementacion-mantenimiento\Implementacion&Mantenimiento\CapaDatos\bin\Debug\CapaDatos.pdb
+C:\Users\ul13m\Documents\GitHub\Implementacion-mantenimiento\Implementacion&Mantenimiento\CapaDatos\bin\Debug\CapaEntidad.dll
+C:\Users\ul13m\Documents\GitHub\Implementacion-mantenimiento\Implementacion&Mantenimiento\CapaDatos\bin\Debug\CapaEntidad.pdb
+C:\Users\ul13m\Documents\GitHub\Implementacion-mantenimiento\Implementacion&Mantenimiento\CapaDatos\obj\Debug\CapaDatos.csproj.AssemblyReference.cache
+C:\Users\ul13m\Documents\GitHub\Implementacion-mantenimiento\Implementacion&Mantenimiento\CapaDatos\obj\Debug\CapaDatos.csproj.CoreCompileInputs.cache
+C:\Users\ul13m\Documents\GitHub\Implementacion-mantenimiento\Implementacion&Mantenimiento\CapaDatos\obj\Debug\CapaDatos.csproj.Up2Date
+C:\Users\ul13m\Documents\GitHub\Implementacion-mantenimiento\Implementacion&Mantenimiento\CapaDatos\obj\Debug\CapaDatos.dll
+C:\Users\ul13m\Documents\GitHub\Implementacion-mantenimiento\Implementacion&Mantenimiento\CapaDatos\obj\Debug\CapaDatos.pdb
