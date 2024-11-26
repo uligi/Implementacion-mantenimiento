@@ -1,7 +1,8 @@
 use PatitosSA;
 GO
 
-CREATE PROCEDURE spListarUsuariosYPersonas
+create PROCEDURE spListarUsuariosYPersonas
+    @Activo BIT = NULL -- Opcional: Filtrar por estado activo/inactivo
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -19,11 +20,12 @@ BEGIN
     FROM Usuarios U
     JOIN Personas P ON U.PersonaID = P.PersonaID
     JOIN Roles R ON U.RolID = R.RolID
-    WHERE U.Activo = 1; -- Solo usuarios activos
+    WHERE (@Activo IS NULL OR U.Activo = @Activo);
 END;
 GO
 
-CREATE PROCEDURE spCrearPersonaYUsuario
+
+create PROCEDURE spCrearPersonaYUsuario
     @NombreCompleto NVARCHAR(100),
     @Cedula NVARCHAR(20),
     @Correo NVARCHAR(100),
@@ -47,9 +49,10 @@ BEGIN
     INSERT INTO Usuarios (PersonaID, RolID, Contrasena, Activo)
     VALUES (@PersonaID, @RolID, @Contrasena, 1);
 
-    SELECT @PersonaID AS PersonaID, SCOPE_IDENTITY() AS UsuarioID; -- Devolver IDs generados
+    SELECT @PersonaID AS PersonaID, SCOPE_IDENTITY() AS UsuarioID; -- Devolver ambos IDs
 END;
 GO
+
 
 CREATE PROCEDURE spModificarPersonaYUsuario
     @PersonaID INT,

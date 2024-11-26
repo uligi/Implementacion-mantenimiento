@@ -113,7 +113,7 @@
                 responsive: true,
                 ordering: false,
                 "ajax": {
-                    url: '@Url.Action("ListarUsuarios", "Usuario")',
+                    url: '@Url.Action("ListarUsuarios", "Usuarios")',
                     type: "GET",
                     datatype: "json",
                     dataSrc: function (json) {
@@ -243,14 +243,14 @@
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
                     if (data.resultado) {
-                        tabladata.ajax.reload();
+                        tabladata.ajax.reload(null, false); // Recargar datos sin refrescar la página
                         $("#FormModal").modal("hide");
                     } else {
                         $("#mensajeError").text(data.mensaje).show();
                     }
                 },
                 error: function (error) {
-                    $("#mensajeError").text("Ocurrió un error al guardar el usuario.").show();
+                    $("#mensajeError").text("Error de comunicación con el servidor.").show();
                 }
             });
         }

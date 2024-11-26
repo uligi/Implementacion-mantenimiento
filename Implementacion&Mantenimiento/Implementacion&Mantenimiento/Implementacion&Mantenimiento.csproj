@@ -157,6 +157,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccesoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProyectosController.cs" />
     <Compile Include="Controllers\ReportesController.cs" />
@@ -342,6 +343,16 @@
     <Content Include="Content\DataTables\images\sort_desc.png" />
     <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
     <Content Include="Content\DataTables\swf\flashExport.swf" />
+    <Content Include="Content\introjs\introjs-rtl.css" />
+    <Content Include="Content\introjs\introjs-rtl.min.css" />
+    <Content Include="Content\introjs\introjs.css" />
+    <Content Include="Content\introjs\introjs.min.css" />
+    <Content Include="Content\introjs\themes\introjs-dark.css" />
+    <Content Include="Content\introjs\themes\introjs-flattener.css" />
+    <Content Include="Content\introjs\themes\introjs-modern.css" />
+    <Content Include="Content\introjs\themes\introjs-nassim.css" />
+    <Content Include="Content\introjs\themes\introjs-nazanin.css" />
+    <Content Include="Content\introjs\themes\introjs-royal.css" />
     <Content Include="Content\Site2.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -438,6 +449,8 @@
     <Content Include="Scripts\DataTables\responsive.jqueryui.min.js" />
     <Content Include="Scripts\DataTables\responsive.semanticui.js" />
     <Content Include="Scripts\DataTables\responsive.semanticui.min.js" />
+    <Content Include="Scripts\introjs\intro.js" />
+    <Content Include="Scripts\introjs\intro.min.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />
     <Content Include="Scripts\jquery-3.7.1.slim.js" />
@@ -466,6 +479,9 @@
     <Content Include="Views\Tareas\Index.cshtml" />
     <Content Include="Views\Reportes\Index.cshtml" />
     <Content Include="Views\Home\test.cshtml" />
+    <Content Include="Views\Acceso\Login.cshtml" />
+    <Content Include="Views\Acceso\Registrar.cshtml" />
+    <Content Include="Views\Acceso\RestablecerContrasena.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

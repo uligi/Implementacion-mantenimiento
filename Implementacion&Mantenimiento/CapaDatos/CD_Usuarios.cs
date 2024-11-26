@@ -28,9 +28,6 @@ namespace CapaDatos
                             {
                                 UsuarioID = Convert.ToInt32(dr["UsuarioID"]),
                                 PersonaID = Convert.ToInt32(dr["PersonaID"]),
-                                RolID = Convert.ToInt32(dr["RolID"]),
-                                Contrasena = dr["Contrasena"].ToString(),
-                                Activo = Convert.ToBoolean(dr["Activo"]),
                                 oPersonas = new Personas
                                 {
                                     NombreCompleto = dr["NombreCompleto"].ToString(),
@@ -40,19 +37,24 @@ namespace CapaDatos
                                 oRoles = new Roles
                                 {
                                     Nombre = dr["Rol"].ToString()
-                                }
+                                },
+                                Activo = Convert.ToBoolean(dr["Activo"])
                             });
                         }
                     }
                 }
             }
+            catch (SqlException ex)
+            {
+                Console.WriteLine($"SQL Error: {ex.Message}");
+            }
             catch (Exception ex)
             {
-                Console.WriteLine("Error: " + ex.Message);
-                lista = new List<Usuarios>();
+                Console.WriteLine($"General Error: {ex.Message}");
             }
             return lista;
         }
+
 
         // Método para registrar un usuario junto con una persona
         public int Registrar(Usuarios obj, out string Mensaje)
