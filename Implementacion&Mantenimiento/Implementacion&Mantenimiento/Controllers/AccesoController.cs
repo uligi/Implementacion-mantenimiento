@@ -1,34 +1,24 @@
-﻿using CapaEntidad;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
 using System.Web.Security;
+using CapaEntidad;
 using CapaNegocio;
 
 namespace Implementacion_Mantenimiento.Controllers
 {
     public class AccesoController : Controller
     {
-        // GET: Acceso
+        private CN_Usuarios usuarioNegocio = new CN_Usuarios();
+
+        // Página de Login
         public ActionResult Login()
         {
             return View();
         }
 
-        public ActionResult Registrar()
-        {
-            return View();
-        }
-        public ActionResult RestablecerContrasena()
-        {
-            return View();
-        }
-
-
+        // Validar Credenciales de Login
         [HttpPost]
-        public ActionResult Index(string correo, string clave)
+        public ActionResult Login(string correo, string clave)
         {
             if (string.IsNullOrEmpty(correo) || string.IsNullOrEmpty(clave))
             {
@@ -36,81 +26,99 @@ namespace Implementacion_Mantenimiento.Controllers
                 return View();
             }
 
-
             string hashedClave = CN_Recursos.ConvertirSha256(clave);
-
-
-            Usuarios oUsuario = new CN_Usuarios().Listar()
-                .Where(u => u.oPersonas.Correo == correo && u.Contrasena == hashedClave).FirstOrDefault();
+            Usuarios oUsuario = usuarioNegocio.Listar()
+                .FirstOrDefault(u => u.oPersonas.Correo == correo && u.Contrasena == hashedClave);
 
             if (oUsuario == null)
             {
-                ViewBag.Error = "Correo o contraseña incorrectos";
+                ViewBag.Error = "Correo o contraseña incorrectos.";
                 return View();
             }
-            else
+            else if (oUsuario.RestablecerContrasena)
             {
-                if (oUsuario.RestablecerContrasena)
-                {
-                    TempData["UsuarioID"] = oUsuario.UsuarioID;
-                    return RedirectToAction("CambiarClave");
-                }
-                FormsAuthentication.SetAuthCookie(oUsuario.oPersonas.Correo, false);
-                Session["NombreUsuario"] = oUsuario.oPersonas.NombreCompleto;
-                Session["Rol"] = oUsuario.oRoles.Nombre;
-                Session["UsuarioID"] = oUsuario.UsuarioID;
-                ViewBag.Error = null;
-
-                return RedirectToAction("Index", "Home");
+                TempData["UsuarioID"] = oUsuario.UsuarioID;
+                return RedirectToAction("RestablecerContrasena");
             }
+
+            FormsAuthentication.SetAuthCookie(oUsuario.oPersonas.Correo, false);
+            Session["NombreUsuario"] = oUsuario.oPersonas.NombreCompleto;
+            Session["Rol"] = oUsuario.oRoles.Nombre;
+
+            return RedirectToAction("Index", "Home");
         }
 
-        [HttpPost]
-        public ActionResult CambiarClave(string UsuarioID, string claveActual, string nuevaClave, string confirmarClave)
+        // Página de Registro
+        public ActionResult Registrar()
         {
+            return View();
+        }
 
-            Usuarios oUsuario = new Usuarios();
-            oUsuario = new CN_Usuarios().Listar()
-                .Where(u => u.UsuarioID == int.Parse(UsuarioID)).FirstOrDefault();
-            if (oUsuario.Contrasena != CN_Recursos.ConvertirSha256(claveActual))
+        // Registrar Usuario
+        [HttpPost]
+        public ActionResult Registrar(string nombreCompleto, string correo, string cedula)
+        {
+            Usuarios nuevoUsuario = new Usuarios
             {
-                TempData["UsuarioID"] = UsuarioID;
-                ViewData["vClave"] = "";
-                ViewBag.Error = "La contraseña actual no es correcta";
+                oPersonas = new Personas
+                {
+                    NombreCompleto = nombreCompleto,
+                    Correo = correo,
+                    Cedula = cedula
+                },
+                RolID = 2 // Rol de usuario básico
+            };
+
+            string mensaje;
+            int resultado = usuarioNegocio.Registrar(nuevoUsuario, out mensaje);
+
+            if (resultado > 0)
+            {
+                ViewBag.Success = "Usuario registrado exitosamente. Revisa tu correo para acceder.";
                 return View();
-            }
-            else if (nuevaClave != confirmarClave)
-            {
-                TempData["UsuarioID"] = UsuarioID;
-                ViewData["vClave"] = claveActual;
-                ViewBag.Error = "Las contraseñas no coinciden";
-                return View();
-            }
-            ViewData["vClave"] = "";
-            nuevaClave = CN_Recursos.ConvertirSha256(nuevaClave);
-
-            string mensaje = string.Empty;
-            bool respuesta = new CN_Usuarios().CambiarClave(int.Parse(UsuarioID), nuevaClave, out mensaje);
-
-            if (respuesta)
-            {
-                return RedirectToAction("Index", "Acceso");
             }
             else
             {
-                TempData["UsuarioID"] = UsuarioID;
                 ViewBag.Error = mensaje;
                 return View();
             }
-
         }
 
+        // Página de Restablecer Contraseña
+        public ActionResult RestablecerContrasena()
+        {
+            return View();
+        }
 
+        // Restablecer Contraseña
+        [HttpPost]
+        public ActionResult RestablecerContrasena(int usuarioID, string nuevaClave, string confirmarClave)
+        {
+            if (nuevaClave != confirmarClave)
+            {
+                ViewBag.Error = "Las contraseñas no coinciden.";
+                return View();
+            }
+
+            string mensaje;
+            bool resultado = usuarioNegocio.CambiarClave(usuarioID, CN_Recursos.ConvertirSha256(nuevaClave), out mensaje);
+
+            if (resultado)
+            {
+                return RedirectToAction("Login");
+            }
+            else
+            {
+                ViewBag.Error = mensaje;
+                return View();
+            }
+        }
+
+        // Cerrar Sesión
         public ActionResult CerrarSesion()
         {
-
             FormsAuthentication.SignOut();
-            return RedirectToAction("Index", "Acceso");
+            return RedirectToAction("Login");
         }
     }
 }

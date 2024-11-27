@@ -20,24 +20,22 @@ namespace CapaNegocio
 
         public int Registrar(Usuarios obj, out string Mensaje)
         {
-            string clave = CN_Recursos.GenerarClave();
-            obj.Contrasena = CN_Recursos.ConvertirSha256(clave); // Hash password
+            string clave = CN_Recursos.GenerarClave(); // Generar contraseña aleatoria
+            obj.Contrasena = CN_Recursos.ConvertirSha256(clave); // Encriptar contraseña
+
             int resultado = objCapaDato.Registrar(obj, out Mensaje);
 
-            if (obj.oPersonas == null || string.IsNullOrWhiteSpace(obj.oPersonas.NombreCompleto))
+            if (resultado > 0)
             {
-                Mensaje = "El nombre completo de la persona es obligatorio.";
-                return 0;
+                // Enviar correo con la contraseña
+                string asunto = "Registro exitoso - Patitos S.A.";
+                string mensajeCorreo = $"Bienvenido a Patitos S.A.\nTu contraseña temporal es: {clave}. Por favor cámbiala al iniciar sesión.";
+                CN_Recursos.EnviarCorreo(obj.oPersonas.Correo, asunto, mensajeCorreo);
             }
 
-            if (string.IsNullOrWhiteSpace(obj.oPersonas.Cedula))
-            {
-                Mensaje = "La cédula es obligatoria.";
-                return 0;
-            }
-
-            return objCapaDato.Registrar(obj, out Mensaje);
+            return resultado;
         }
+
 
         public bool Editar(Usuarios obj, out string Mensaje)
         {
