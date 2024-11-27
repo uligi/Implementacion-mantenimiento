@@ -18,7 +18,7 @@ namespace Implementacion_Mantenimiento.Controllers
 
         // Validar Credenciales de Login
         [HttpPost]
-        public ActionResult Login2(string correo, string clave)
+        public ActionResult Login(string correo, string clave)
         {
             if (string.IsNullOrEmpty(correo) || string.IsNullOrEmpty(clave))
             {
