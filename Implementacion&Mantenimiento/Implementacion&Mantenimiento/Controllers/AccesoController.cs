@@ -16,16 +16,18 @@ namespace Implementacion_Mantenimiento.Controllers
             return View();
         }
 
-        // Validar Credenciales de Login
+
         [HttpPost]
         public ActionResult Login(string correo, string clave)
         {
+            // Validar que los campos no estén vacíos
             if (string.IsNullOrEmpty(correo) || string.IsNullOrEmpty(clave))
             {
                 ViewBag.Error = "Correo y contraseña no pueden estar vacíos.";
-                return View();
+                return View(); // Retorna la misma vista con el mensaje de error
             }
 
+            // Validar credenciales
             string hashedClave = CN_Recursos.ConvertirSha256(clave);
             Usuarios oUsuario = usuarioNegocio.Listar()
                 .FirstOrDefault(u => u.oPersonas.Correo == correo && u.Contrasena == hashedClave);
@@ -33,20 +35,24 @@ namespace Implementacion_Mantenimiento.Controllers
             if (oUsuario == null)
             {
                 ViewBag.Error = "Correo o contraseña incorrectos.";
-                return View();
+                return View(); // Retorna la misma vista con el mensaje de error
             }
-            else if (oUsuario.RestablecerContrasena)
+
+            // Redirigir a restablecer contraseña si es necesario
+            if (oUsuario.RestablecerContrasena)
             {
                 TempData["UsuarioID"] = oUsuario.UsuarioID;
                 return RedirectToAction("RestablecerContrasena");
             }
 
+            // Autenticación exitosa
             FormsAuthentication.SetAuthCookie(oUsuario.oPersonas.Correo, false);
             Session["NombreUsuario"] = oUsuario.oPersonas.NombreCompleto;
             Session["Rol"] = oUsuario.oRoles.Nombre;
 
             return RedirectToAction("Index", "Home");
         }
+
 
         // Página de Registro
         public ActionResult Registrar()
