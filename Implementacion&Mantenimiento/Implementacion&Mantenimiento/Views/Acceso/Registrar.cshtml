@@ -4,14 +4,86 @@
 }
 
 <!DOCTYPE html>
+<html lang="en">
 
-<html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Registrar</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Registro - Patitos S.A.">
+    <meta name="author" content="Patitos S.A.">
+
+    <title>Patitos S.A. - Registro</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="~/Content/Site2.css" rel="stylesheet">
+
 </head>
-<body>
-    <div> 
+
+<body class="bg-gradient-primary">
+
+    <div class="container">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <!-- Logo and Welcome Message -->
+                    <div class="col-lg-5 d-flex flex-column justify-content-center align-items-center bg-light">
+                        <img src="/images/logo.png" alt="Logo de Patitos S.A." style="width: 200px; height: auto;" class="mb-4">
+                        <h1 class="h4 text-gray-900 text-center">¡Únete a Patitos S.A.!</h1>
+                        <p class="text-muted text-center">Registra tu cuenta para acceder a la gestión de proyectos y tareas.</p>
+                    </div>
+                    <!-- Registration Form -->
+                    <div class="col-lg-7">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Crear una cuenta</h1>
+                            </div>
+                            <form class="user" method="post" action="/Account/Register">
+                                <div class="form-group">
+                                    <input type="text" name="nombreCompleto" class="form-control form-control-user" id="nombreCompleto" placeholder="Nombre completo" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" name="correo" class="form-control form-control-user" id="correo" placeholder="Correo electrónico" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="cedula" class="form-control form-control-user" id="cedula" placeholder="Cédula" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" name="contrasena" class="form-control form-control-user" id="contrasena" placeholder="Contraseña" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-user btn-block">
+                                    Registrar cuenta
+                                </button>
+                            </form>
+                            <hr>
+                            <div class="text-center">
+                                <a class="small" href="/Account/Login">¿Ya tienes una cuenta? ¡Inicia sesión!</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
 </body>
+
 </html>
