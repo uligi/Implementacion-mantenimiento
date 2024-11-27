@@ -42,10 +42,12 @@ namespace CapaNegocio
             return objCapaDato.Editar(obj, out Mensaje);
         }
 
-        public bool Eliminar(int id, out string Mensaje)
+        public bool Eliminar(int personaID, int usuarioID, out string Mensaje)
         {
-            return objCapaDato.Eliminar(id, out Mensaje);
+            // Pasar correctamente los dos IDs requeridos al método y el parámetro de salida
+            return objCapaDato.Eliminar(personaID, usuarioID, out Mensaje);
         }
+
 
         public bool CambiarClave(int UsuarioID, string nuevaClave, out string Mensaje)
         {
