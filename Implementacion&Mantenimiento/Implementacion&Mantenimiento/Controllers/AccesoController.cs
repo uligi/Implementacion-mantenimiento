@@ -40,8 +40,8 @@ namespace Implementacion_Mantenimiento.Controllers
             string hashedClave = CN_Recursos.ConvertirSha256(clave);
 
 
-            Usuarios oUsuario = new CN_Usuario().Listar()
-                .Where(u => u.Persona.Correo.DireccionCorreo == correo && u.Contrasena == hashedClave).FirstOrDefault();
+            Usuarios oUsuario = new CN_Usuarios().Listar()
+                .Where(u => u.oPersonas.Correo == correo && u.Contrasena == hashedClave).FirstOrDefault();
 
             if (oUsuario == null)
             {
@@ -55,9 +55,9 @@ namespace Implementacion_Mantenimiento.Controllers
                     TempData["UsuarioID"] = oUsuario.UsuarioID;
                     return RedirectToAction("CambiarClave");
                 }
-                FormsAuthentication.SetAuthCookie(oUsuario.Personas.Correo, false);
-                Session["NombreUsuario"] = oUsuario.Personas.Nombre;
-                Session["Rol"] = oUsuario.Roles.Rol;
+                FormsAuthentication.SetAuthCookie(oUsuario.oPersonas.Correo, false);
+                Session["NombreUsuario"] = oUsuario.oPersonas.NombreCompleto;
+                Session["Rol"] = oUsuario.oRoles.Nombre;
                 Session["UsuarioID"] = oUsuario.UsuarioID;
                 ViewBag.Error = null;
 
