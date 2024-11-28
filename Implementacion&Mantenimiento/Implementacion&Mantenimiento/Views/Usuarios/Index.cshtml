@@ -6,7 +6,8 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/4.0.0/introjs.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/responsive/2.4.1/css/responsive.bootstrap5.min.css" rel="stylesheet" />
 </head>
 
 <ol class="breadcrumb mb-4 mt-4">
@@ -27,7 +28,7 @@
 
         <hr />
 
-        <table id="tabla" class="display cell-border" style="width:100%">
+        <table id="tabla" class="table table-striped table-bordered nowrap" style="width:100%">
             <thead>
                 <tr>
                     <th>Cédula</th>
@@ -94,16 +95,14 @@
     </div>
 </div>
 
-<!-- Botón para iniciar el tutorial -->
-<div class="row mt-2">
-    <div class="col-12">
-        <button type="button" id="startTutorial" class="btn btn-info btn-sm">Iniciar Tutorial</button>
-    </div>
-</div>
-
+<!-- Scripts -->
 @section scripts {
-    <!-- Scripts necesarios -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.4.1/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.4.1/js/responsive.bootstrap5.min.js"></script>
+
     <script>
         var tabladata;
 
@@ -112,42 +111,36 @@
             tabladata = $("#tabla").DataTable({
                 responsive: true,
                 ordering: false,
-                "ajax": {
+                ajax: {
                     url: '@Url.Action("ListarUsuarios", "Usuarios")',
                     type: "GET",
                     datatype: "json",
-                    dataSrc: function (json) {
-                        return json;
-                    }
+                    dataSrc: ""
                 },
-                "columns": [
-                    { "data": "oPersonas.Cedula" },
-                    { "data": "oPersonas.NombreCompleto" },
-                    { "data": "oRoles.Nombre" },
-                    { "data": "oPersonas.Correo" },
+                columns: [
+                    { data: "oPersonas.Cedula" },
+                    { data: "oPersonas.NombreCompleto" },
+                    { data: "oRoles.Nombre" },
+                    { data: "oPersonas.Correo" },
                     {
-                        "data": "Activo",
-                        "render": function (data) {
+                        data: "Activo",
+                        render: function (data) {
                             return data ? '<span class="badge bg-success">Sí</span>' : '<span class="badge bg-danger">No</span>';
                         }
                     },
                     {
-                        "data": null,
-                        "defaultContent": '<div class="btn-group">' +
-                                          '<button type="button" class="btn btn-primary btn-small btn-editar"><i class="fas fa-pen"></i></button>' +
-                                          '<button type="button" class="btn btn-danger btn-small ms-2 btn-eliminar"><i class="fas fa-trash"></i></button>' +
-                                          '</div>',
-                        "orderable": false,
-                        "searchable": false,
-                        "width": "150px"
+                        data: null,
+                        defaultContent:
+                            '<button class="btn btn-primary btn-sm btn-editar">Editar</button> ' +
+                            '<button class="btn btn-danger btn-sm btn-eliminar">Eliminar</button>'
                     }
                 ],
-                "language": {
-                    "url": "//cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json"
+                language: {
+                    url: "//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json"
                 }
             });
 
-            // Eventos para botones de editar y eliminar
+            // Evento para botones de editar y eliminar
             $('#tabla tbody').on('click', '.btn-editar', function () {
                 var data = tabladata.row($(this).parents('tr')).data();
                 abrirModal(data);
@@ -157,169 +150,31 @@
                 var data = tabladata.row($(this).parents('tr')).data();
                 eliminarUsuario(data.UsuarioID, data.PersonaID);
             });
-
-            // Cargar roles
-            cargarRoles();
         });
 
         function abrirModal(data) {
-            // Limpiar formulario
-            $("#UsuarioID").val(0);
-            $("#PersonaID").val(0);
-            $("#nombreCompleto").val("");
-            $("#cedula").val("");
-            $("#correo").val("");
-            $("#rolID").val(0);
-            $("#contrasena").val("");
+            $("#UsuarioID").val(data ? data.UsuarioID : 0);
+            $("#PersonaID").val(data ? data.PersonaID : 0);
+            $("#nombreCompleto").val(data ? data.oPersonas.NombreCompleto : "");
+            $("#cedula").val(data ? data.oPersonas.Cedula : "");
+            $("#correo").val(data ? data.oPersonas.Correo : "");
+            $("#rolID").val(data ? data.RolID : 0);
+            $("#contrasena").val(data ? data.Contrasena : "");
 
             $("#mensajeError").hide();
-
-            if (data != null) {
-                $("#UsuarioID").val(data.UsuarioID);
-                $("#PersonaID").val(data.PersonaID);
-                $("#nombreCompleto").val(data.oPersonas.NombreCompleto);
-                $("#cedula").val(data.oPersonas.Cedula);
-                $("#correo").val(data.oPersonas.Correo);
-                $("#rolID").val(data.RolID);
-                $("#contrasena").val(data.Contrasena);
-
-                $("#exampleModalLabel").text("Editar Usuario");
-            } else {
-                $("#exampleModalLabel").text("Agregar Usuario");
-            }
-
             $("#FormModal").modal("show");
-        }
-
-        function cargarRoles() {
-            $.ajax({
-                url: '@Url.Action("ListarRoles", "Roles")',
-                type: "GET",
-                dataType: "json",
-                success: function (data) {
-                    $("#rolID").empty();
-                    $("#rolID").append('<option value="0">Seleccione un Rol</option>');
-                    $.each(data, function (index, item) {
-                        $("#rolID").append('<option value="' + item.RolID + '">' + item.Nombre + '</option>');
-                    });
-                }
-            });
-        }
-
-        function guardarUsuario() {
-            var usuarioID = $("#UsuarioID").val();
-            var personaID = $("#PersonaID").val();
-            var nombreCompleto = $("#nombreCompleto").val().trim();
-            var cedula = $("#cedula").val().trim();
-            var correo = $("#correo").val().trim();
-            var rolID = $("#rolID").val();
-            var contrasena = $("#contrasena").val().trim();
-
-            if (nombreCompleto === "" || cedula === "" || correo === "" || rolID == 0 || contrasena === "") {
-                $("#mensajeError").text("Todos los campos son obligatorios.").show();
-                return;
-            } else {
-                $("#mensajeError").hide();
-            }
-
-            var usuario = {
-                UsuarioID: usuarioID,
-                PersonaID: personaID,
-                RolID: rolID,
-                Contrasena: contrasena,
-                oPersonas: {
-                    NombreCompleto: nombreCompleto,
-                    Cedula: cedula,
-                    Correo: correo
-                }
-            };
-
-            var url = usuarioID == 0 ? '@Url.Action("RegistrarUsuario", "Usuario")' : '@Url.Action("EditarUsuario", "Usuario")';
-
-            $.ajax({
-                url: url,
-                type: "POST",
-                data: JSON.stringify(usuario),
-                contentType: "application/json; charset=utf-8",
-                success: function (data) {
-                    if (data.resultado) {
-                        tabladata.ajax.reload(null, false); // Recargar datos sin refrescar la página
-                        $("#FormModal").modal("hide");
-                    } else {
-                        $("#mensajeError").text(data.mensaje).show();
-                    }
-                },
-                error: function (error) {
-                    $("#mensajeError").text("Error de comunicación con el servidor.").show();
-                }
-            });
         }
 
         function eliminarUsuario(usuarioID, personaID) {
             if (confirm("¿Está seguro de eliminar este usuario?")) {
-                $.ajax({
-                    url: '@Url.Action("EliminarUsuario", "Usuario")',
-                    type: "POST",
-                    data: JSON.stringify({ usuarioID: usuarioID, personaID: personaID }),
-                    contentType: "application/json; charset=utf-8",
-                    success: function (data) {
-                        if (data.resultado) {
-                            tabladata.ajax.reload();
-                        } else {
-                            alert(data.mensaje);
-                        }
+                $.post('@Url.Action("EliminarUsuario", "Usuarios")', { usuarioID, personaID }, function (response) {
+                    if (response.resultado) {
+                        tabladata.ajax.reload();
+                    } else {
+                        alert(response.mensaje);
                     }
                 });
             }
         }
-
-        // Evento para guardar usuario
-        $("#btnGuardar").click(function () {
-            guardarUsuario();
-        });
-    </script>
-    <!-- Scripts adicionales -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/4.0.0/intro.min.js"></script>
-    <script>
-        // Código para el tutorial
-        $(document).ready(function () {
-            $('#startTutorial').click(function () {
-                introJs().setOptions({
-                    steps: [
-                        {
-                            intro: "Bienvenido al tutorial de 'Gestión de Usuarios'. Aquí te mostramos cómo administrar los usuarios en el sistema."
-                        },
-                        {
-                            element: '#tabla',
-                            intro: "Esta es la tabla donde se muestran todos los usuarios registrados."
-                        },
-                        {
-                            element: '.btn-success',
-                            intro: "Haz clic aquí para agregar un nuevo usuario."
-                        },
-                        {
-                            element: '.btn-editar',
-                            intro: "Usa este botón para editar la información de un usuario existente."
-                        },
-                        {
-                            element: '.btn-eliminar',
-                            intro: "Usa este botón para eliminar un usuario que ya no necesites."
-                        },
-                        {
-                            intro: "Esto concluye el tutorial de 'Gestión de Usuarios'. ¡Gracias por tu atención!"
-                        }
-                    ],
-                    showProgress: true,
-                    exitOnOverlayClick: false,
-                    exitOnEsc: true,
-                    showStepNumbers: true,
-                    nextLabel: 'Siguiente',
-                    prevLabel: 'Anterior',
-                    skipLabel: 'Salir',
-                    doneLabel: 'Finalizar'
-                }).start();
-            });
-        });
     </script>
 }
-
