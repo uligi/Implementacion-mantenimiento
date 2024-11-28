@@ -27,6 +27,7 @@ namespace CapaDatos
                             lista.Add(new Usuarios()
                             {
                                 UsuarioID = Convert.ToInt32(dr["UsuarioID"]),
+                                Contrasena = (dr["Contrasena"].ToString()),
                                 PersonaID = Convert.ToInt32(dr["PersonaID"]),
                                 oPersonas = new Personas
                                 {
@@ -180,61 +181,72 @@ namespace CapaDatos
             return resultado;
         }
 
-        public bool CambiarClave(int UsuarioID, string nuevaClave, out string Mensaje)
+        public bool CambiarClave(int usuarioID, string nuevaClave, out string mensaje)
         {
             bool resultado = false;
-            Mensaje = string.Empty;
+            mensaje = string.Empty;
+
             try
             {
                 using (SqlConnection oConexion = new SqlConnection(Conexion.cn))
                 {
-                    SqlCommand cmd = new SqlCommand("sp_CambiarClave", oConexion);
+                    SqlCommand cmd = new SqlCommand("spCambiarClave", oConexion);
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@UsuarioID", UsuarioID);
+                    cmd.Parameters.AddWithValue("@UsuarioID", usuarioID);
                     cmd.Parameters.AddWithValue("@NuevaClave", nuevaClave);
+
+                    cmd.Parameters.Add("@Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
                     cmd.Parameters.Add("@Resultado", SqlDbType.Bit).Direction = ParameterDirection.Output;
-                    cmd.Parameters.Add("@Mensaje", SqlDbType.NVarChar, 500).Direction = ParameterDirection.Output;
 
                     oConexion.Open();
                     cmd.ExecuteNonQuery();
 
+                    mensaje = cmd.Parameters["@Mensaje"].Value.ToString();
                     resultado = Convert.ToBoolean(cmd.Parameters["@Resultado"].Value);
-                    Mensaje = cmd.Parameters["@Mensaje"].Value.ToString();
                 }
             }
             catch (Exception ex)
             {
-                resultado = false;
-                Mensaje = ex.Message;
+                mensaje = ex.Message;
             }
+
             return resultado;
         }
 
 
-        public bool RestablecerContrasena(int UsuarioID, string Contrasena, out string Mensaje)
+
+        public bool RestablecerContrasena(int usuarioID, string nuevaClave, out string mensaje)
         {
             bool resultado = false;
-            Mensaje = string.Empty;
+            mensaje = string.Empty;
+
             try
             {
                 using (SqlConnection oConexion = new SqlConnection(Conexion.cn))
                 {
-                    SqlCommand cmd = new SqlCommand("update Usuarios set Contrasena = @Contrasena, RestablecerContraseña  = 1 where UsuarioID = @UsuarioID", oConexion);
-                    cmd.CommandType = CommandType.Text;
-                    cmd.Parameters.AddWithValue("@UsuarioID", UsuarioID);
-                    cmd.Parameters.AddWithValue("@Contrasena", Contrasena);
+                    SqlCommand cmd = new SqlCommand("spRestablecerContrasena", oConexion);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@UsuarioID", usuarioID);
+                    cmd.Parameters.AddWithValue("@NuevaClave", nuevaClave);
+
+                    cmd.Parameters.Add("@Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("@Resultado", SqlDbType.Bit).Direction = ParameterDirection.Output;
 
                     oConexion.Open();
-                    resultado = cmd.ExecuteNonQuery() > 0 ? true : false;
+                    cmd.ExecuteNonQuery();
 
+                    mensaje = cmd.Parameters["@Mensaje"].Value.ToString();
+                    resultado = Convert.ToBoolean(cmd.Parameters["@Resultado"].Value);
                 }
             }
             catch (Exception ex)
             {
-                resultado = false;
-                Mensaje = ex.Message;
+                mensaje = ex.Message;
             }
+
             return resultado;
         }
+
+
     }
 }

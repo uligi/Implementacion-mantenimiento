@@ -1,0 +1,53 @@
+﻿<Project>
+  <ItemGroup>
+    <StaticWebAsset Include="$(MSBuildThisFileDirectory)..\staticwebassets\GithubPlus.json">
+      <SourceType>Package</SourceType>
+      <SourceId>BlazorPrettyCode</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/BlazorPrettyCode</BasePath>
+      <RelativePath>GithubPlus.json</RelativePath>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$(MSBuildThisFileDirectory)..\staticwebassets\Material.json">
+      <SourceType>Package</SourceType>
+      <SourceId>BlazorPrettyCode</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/BlazorPrettyCode</BasePath>
+      <RelativePath>Material.json</RelativePath>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$(MSBuildThisFileDirectory)..\staticwebassets\PrettyCodeDefault.json">
+      <SourceType>Package</SourceType>
+      <SourceId>BlazorPrettyCode</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/BlazorPrettyCode</BasePath>
+      <RelativePath>PrettyCodeDefault.json</RelativePath>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$(MSBuildThisFileDirectory)..\staticwebassets\SolarizedDark.json">
+      <SourceType>Package</SourceType>
+      <SourceId>BlazorPrettyCode</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/BlazorPrettyCode</BasePath>
+      <RelativePath>SolarizedDark.json</RelativePath>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$(MSBuildThisFileDirectory)..\staticwebassets\SolarizedLight.json">
+      <SourceType>Package</SourceType>
+      <SourceId>BlazorPrettyCode</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/BlazorPrettyCode</BasePath>
+      <RelativePath>SolarizedLight.json</RelativePath>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$(MSBuildThisFileDirectory)..\staticwebassets\WinterIsComingDark.json">
+      <SourceType>Package</SourceType>
+      <SourceId>BlazorPrettyCode</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/BlazorPrettyCode</BasePath>
+      <RelativePath>WinterIsComingDark.json</RelativePath>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$(MSBuildThisFileDirectory)..\staticwebassets\WinterIsComingLight.json">
+      <SourceType>Package</SourceType>
+      <SourceId>BlazorPrettyCode</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/BlazorPrettyCode</BasePath>
+      <RelativePath>WinterIsComingLight.json</RelativePath>
+    </StaticWebAsset>
+  </ItemGroup>
+</Project>

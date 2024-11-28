@@ -1,4 +1,17 @@
-﻿<!DOCTYPE html>
+﻿@using CapaDatos;
+@{
+    var usuarioID = Session["UsuarioID"] as int?; // Obtener el ID del usuario desde la sesión
+    var cdUsuarios = new CD_Usuarios();
+    var esAdministrador = false;
+
+    if (usuarioID.HasValue)
+    {
+        var usuario = cdUsuarios.Listar().FirstOrDefault(u => u.UsuarioID == usuarioID.Value);
+        esAdministrador = usuario?.oRoles.Nombre == "Administrador";
+    }
+}
+
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="utf-8" />
@@ -16,14 +29,10 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="@Url.Action("Index","Home")">
-                <!-- Logo -->
-                <img src="images/logo.png" alt="Patitos S.A." style="width: 40px; height: 40px; margin-right: 10px;">
-                <!-- Texto del nombre -->
+                <img src="/images/logo.png" alt="Patitos S.A." style="width: 40px; height: 40px; margin-right: 10px;">
                 <div class="sidebar-brand-text mx-3">Patitos S.A.</div>
             </a>
 
-
-            <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
@@ -34,59 +43,64 @@
                 </a>
             </li>
 
-            <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Gestión
-            </div>
+            <!-- Gestión Section -->
+            <div class="sidebar-heading">Gestión</div>
 
-            <!-- Nav Item - Proyectos -->
+            <!-- Proyectos -->
             <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("Index","Proyectos")">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProyectos" aria-expanded="true" aria-controls="collapseProyectos">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Proyectos</span>
                 </a>
+                <div id="collapseProyectos" class="collapse" aria-labelledby="headingProyectos" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="@Url.Action("Index", "Proyectos")">Consulta</a>
+                        <a class="collapse-item" href="@Url.Action("Reporte", "Proyectos")">Reporte</a>
+                    </div>
+                </div>
             </li>
 
-            <!-- Nav Item - Tareas -->
+            <!-- Tareas -->
             <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("Index","Tareas")">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTareas" aria-expanded="true" aria-controls="collapseTareas">
                     <i class="fas fa-fw fa-tasks"></i>
                     <span>Tareas</span>
                 </a>
+                <div id="collapseTareas" class="collapse" aria-labelledby="headingTareas" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="@Url.Action("Index", "Tareas")">Consulta</a>
+                        <a class="collapse-item" href="@Url.Action("Reporte", "Tareas")">Reporte</a>
+                    </div>
+                </div>
             </li>
 
-            <!-- Solo para Admin -->
-            @*if (User.IsInRole("Admin"))*@
+            <!-- Seguridad Section -->
+            @if (esAdministrador)
             {
                 <hr class="sidebar-divider">
-                <div class="sidebar-heading">Administración</div>
-
-                <!-- Nav Item - Usuarios -->
+                <div class="sidebar-heading">Seguridad</div>
                 <li class="nav-item">
                     <a class="nav-link" href="@Url.Action("Index","Usuarios")">
                         <i class="fas fa-fw fa-users"></i>
                         <span>Usuarios</span>
                     </a>
                 </li>
-
-                <!-- Nav Item - Reportes -->
                 <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("Index","Reportes")">
-                        <i class="fas fa-fw fa-chart-area"></i>
-                        <span>Reportes</span>
+                    <a class="nav-link" href="@Url.Action("Index","Roles")">
+                        <i class="fas fa-fw fa-user-shield"></i>
+                        <span>Roles</span>
                     </a>
                 </li>
             }
-            <hr class="sidebar-divider d-none d-md-block">
 
-            <!-- Sidebar Toggler -->
+            <hr class="sidebar-divider d-none d-md-block">
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
         </ul>
+
         <!-- End of Sidebar -->
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -96,21 +110,15 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-                    <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
-
-                        <!-- User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <span class="nav-link">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">@User.Identity.Name</span>
-                                <a href="/Account/Logout" class="btn btn-danger btn-sm">Cerrar Sesión</a>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">@Session["NombreUsuario"]</span>
+                                <a href="@Url.Action("CerrarSesion", "Acceso")" class="btn btn-danger btn-sm">Cerrar Sesión</a>
                             </span>
                         </li>
-
                     </ul>
                 </nav>
-
                 <!-- End of Topbar -->
                 <!-- Page Content -->
                 <div class="container-fluid">
@@ -132,16 +140,13 @@
 
         </div>
         <!-- End of Content Wrapper -->
-
     </div>
     <!-- End of Page Wrapper -->
-    <!-- Bootstrap core JavaScript-->
 
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/vendor")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/complementos")
     @RenderSection("scripts", required: false)
 </body>
 </html>
-
-
-

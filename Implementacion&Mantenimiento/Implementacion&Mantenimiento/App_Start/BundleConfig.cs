@@ -10,7 +10,9 @@ namespace Implementacion_Mantenimiento
         {
             bundles.Add(new Bundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js",
-                     "~/Scripts/jquery-3.7.0.js",
+                        "~/Scripts/jquery-3.7.0.js",
+                         "~/Scripts/jquery.js",
+                          "~/Scripts/jquery.easing.min.js",
                         "~/Scripts/DataTables/jquery.dataTables.js",
                         "~/Scripts/DataTables/dataTables.responsive.js",
                         "~/Scripts/Validaciones.js"));
@@ -32,12 +34,16 @@ namespace Implementacion_Mantenimiento
                                 "~/Scripts/modernizr-*"));*/
 
             bundles.Add(new Bundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.bundle.js", "~/Scripts/BD/sb-admin-2.js",
-                        "~/Scripts/BD/sb-admin-2.min.js",
-                        "~/Scripts/BD/demo/chart-area-demo.js",
-                        "~/Scripts/BD/demo/chart-bar-demo.js",
-                        "~/Scripts/BD/demo/chart-pie-demo.js",
-                        "~/Scripts/BD/demo/datatables-demo.js"));
+                        "~/Scripts/bootstrap.bundle.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/vendor").Include(
+                        "~/Scripts/vendor/jquery/jquery.min.js",
+                        "~/Scripts/vendor/bootstrap/js/bootstrap.bundle.min.js",
+                        "~/Scripts/vendor/jquery-easing/jquery.easing.min.js",
+                        "~/Scripts/js/sb-admin-2.min.js"
+                    ));
+
+
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/site.css",

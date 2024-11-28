@@ -42,11 +42,12 @@ namespace Implementacion_Mantenimiento.Controllers
             if (oUsuario.RestablecerContrasena)
             {
                 TempData["UsuarioID"] = oUsuario.UsuarioID;
-                return RedirectToAction("RestablecerContrasena");
+                return RedirectToAction("RestablecerContrasena","Acceso");
             }
 
             // Autenticación exitosa
             FormsAuthentication.SetAuthCookie(oUsuario.oPersonas.Correo, false);
+            Session["UsuarioID"] = oUsuario.UsuarioID;
             Session["NombreUsuario"] = oUsuario.oPersonas.NombreCompleto;
             Session["Rol"] = oUsuario.oRoles.Nombre;
 
@@ -62,7 +63,7 @@ namespace Implementacion_Mantenimiento.Controllers
 
         // Registrar Usuario
         [HttpPost]
-        public ActionResult Registrar(string nombreCompleto, string correo, string cedula)
+        public ActionResult Registrar(string nombreCompleto, string correo, string cedula, string telefono, string direccion)
         {
             Usuarios nuevoUsuario = new Usuarios
             {
@@ -70,9 +71,11 @@ namespace Implementacion_Mantenimiento.Controllers
                 {
                     NombreCompleto = nombreCompleto,
                     Correo = correo,
-                    Cedula = cedula
+                    Cedula = cedula,
+                    Telefono = string.IsNullOrEmpty(telefono) ? null : telefono,
+                    Direccion = string.IsNullOrEmpty(direccion) ? null : direccion
                 },
-                RolID = 2 // Rol de usuario básico
+                RolID = 2 // Asignar automáticamente el Rol de usuario básico
             };
 
             string mensaje;
@@ -80,8 +83,8 @@ namespace Implementacion_Mantenimiento.Controllers
 
             if (resultado > 0)
             {
-                ViewBag.Success = "Usuario registrado exitosamente. Revisa tu correo para acceder.";
-                return View();
+                TempData["SuccessMessage"] = "Registro exitoso. Revisa tu correo para obtener tu contraseña temporal.";
+                return RedirectToAction("Login","Acceso");
             }
             else
             {
@@ -90,27 +93,34 @@ namespace Implementacion_Mantenimiento.Controllers
             }
         }
 
+
+
         // Página de Restablecer Contraseña
         public ActionResult RestablecerContrasena()
         {
+            ViewBag.UsuarioID = TempData["UsuarioID"];
             return View();
         }
 
         // Restablecer Contraseña
+        
         [HttpPost]
-        public ActionResult RestablecerContrasena(int usuarioID, string nuevaClave, string confirmarClave)
+        public ActionResult RestablecerContrasena(int usuarioID)
         {
-            if (nuevaClave != confirmarClave)
+            string mensaje;
+            Usuarios usuario = usuarioNegocio.Listar().FirstOrDefault(u => u.UsuarioID == usuarioID);
+
+            if (usuario == null)
             {
-                ViewBag.Error = "Las contraseñas no coinciden.";
+                ViewBag.Error = "Usuario no encontrado.";
                 return View();
             }
 
-            string mensaje;
-            bool resultado = usuarioNegocio.CambiarClave(usuarioID, CN_Recursos.ConvertirSha256(nuevaClave), out mensaje);
+            bool resultado = usuarioNegocio.RestablecerContrasena(usuarioID, usuario.oPersonas.Correo, out mensaje);
 
             if (resultado)
             {
+                TempData["SuccessMessage"] = "Se ha enviado una nueva contraseña a tu correo.";
                 return RedirectToAction("Login");
             }
             else
@@ -120,11 +130,41 @@ namespace Implementacion_Mantenimiento.Controllers
             }
         }
 
+
+      
+
+
+        [HttpPost]
+        public ActionResult CambiarClave(int usuarioID, string nuevaClave, string confirmarClave)
+        {
+            if (nuevaClave != confirmarClave)
+            {
+                ViewBag.Error = "Las contraseñas no coinciden.";
+                ViewBag.UsuarioID = usuarioID;
+                return View();
+            }
+
+            string mensaje;
+            bool resultado = usuarioNegocio.CambiarClave(usuarioID, CN_Recursos.ConvertirSha256(nuevaClave), out mensaje);
+
+            if (resultado)
+            {
+                TempData["SuccessMessage"] = "Contraseña cambiada con éxito.";
+                return RedirectToAction("Login");
+            }
+            else
+            {
+                ViewBag.Error = mensaje;
+                ViewBag.UsuarioID = usuarioID;
+                return View();
+            }
+        }
+
         // Cerrar Sesión
         public ActionResult CerrarSesion()
         {
             FormsAuthentication.SignOut();
-            return RedirectToAction("Login");
+            return RedirectToAction("Login", "Acceso");
         }
     }
 }

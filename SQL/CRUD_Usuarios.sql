@@ -16,7 +16,9 @@ BEGIN
         P.Telefono,
         P.Direccion,
         R.Nombre AS Rol,
-        U.Activo
+        U.Activo,
+		U.RestablecerContrasena,
+		U.Contrasena
     FROM Usuarios U
     JOIN Personas P ON U.PersonaID = P.PersonaID
     JOIN Roles R ON U.RolID = R.RolID
@@ -108,5 +110,44 @@ BEGIN
     WHERE UsuarioID = @UsuarioID;
 
     SELECT 'Persona y Usuario eliminados lógicamente' AS Mensaje;
+END;
+GO
+
+
+CREATE PROCEDURE spCambiarClave
+    @UsuarioID INT,
+    @NuevaClave VARCHAR(255)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    UPDATE Usuarios
+    SET Contrasena = @NuevaClave,
+        RestablecerContrasena = 0
+    WHERE UsuarioID = @UsuarioID AND Activo = 1;
+
+    IF @@ROWCOUNT > 0
+        SELECT 'Contraseña actualizada correctamente' AS Mensaje, 1 AS Resultado;
+    ELSE
+        SELECT 'No se pudo actualizar la contraseña. Verifique que el usuario esté activo.' AS Mensaje, 0 AS Resultado;
+END;
+GO
+
+CREATE PROCEDURE spRestablecerContrasena
+    @UsuarioID INT,
+    @NuevaClave VARCHAR(255)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    UPDATE Usuarios
+    SET Contrasena = @NuevaClave,
+        RestablecerContrasena = 1
+    WHERE UsuarioID = @UsuarioID AND Activo = 1;
+
+    IF @@ROWCOUNT > 0
+        SELECT 'Contraseña restablecida correctamente' AS Mensaje, 1 AS Resultado;
+    ELSE
+        SELECT 'No se pudo restablecer la contraseña. Verifique que el usuario esté activo.' AS Mensaje, 0 AS Resultado;
 END;
 GO
