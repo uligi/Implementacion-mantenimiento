@@ -12,7 +12,6 @@ namespace CapaDatos
         public List<Roles> Listar(int? rolID = null)
         {
             List<Roles> lista = new List<Roles>();
-
             try
             {
                 using (SqlConnection oConexion = new SqlConnection(Conexion.cn))
@@ -40,18 +39,17 @@ namespace CapaDatos
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error: " + ex.Message);
-                lista = new List<Roles>();
+                Console.WriteLine($"Error: {ex.Message}");
             }
 
             return lista;
         }
 
         // Método para crear un rol
-        public int Crear(Roles obj, out string Mensaje)
+        public int Crear(Roles obj, out string mensaje)
         {
             int resultado = 0;
-            Mensaje = string.Empty;
+            mensaje = string.Empty;
 
             try
             {
@@ -63,25 +61,23 @@ namespace CapaDatos
                     cmd.Parameters.AddWithValue("@Descripcion", obj.Descripcion ?? (object)DBNull.Value);
 
                     oConexion.Open();
-
                     resultado = Convert.ToInt32(cmd.ExecuteScalar());
-                    Mensaje = "Rol creado correctamente.";
+                    mensaje = "Rol creado correctamente.";
                 }
             }
             catch (Exception ex)
             {
-                Mensaje = ex.Message;
-                resultado = 0;
+                mensaje = ex.Message;
             }
 
             return resultado;
         }
 
         // Método para modificar un rol
-        public bool Modificar(Roles obj, out string Mensaje)
+        public bool Modificar(Roles obj, out string mensaje)
         {
             bool resultado = false;
-            Mensaje = string.Empty;
+            mensaje = string.Empty;
 
             try
             {
@@ -95,25 +91,23 @@ namespace CapaDatos
 
                     oConexion.Open();
                     cmd.ExecuteNonQuery();
-
-                    Mensaje = "Rol modificado correctamente.";
+                    mensaje = "Rol actualizado correctamente.";
                     resultado = true;
                 }
             }
             catch (Exception ex)
             {
-                Mensaje = ex.Message;
-                resultado = false;
+                mensaje = ex.Message;
             }
 
             return resultado;
         }
 
         // Método para eliminar un rol
-        public bool Eliminar(int rolID, out string Mensaje)
+        public bool Eliminar(int rolID, out string mensaje)
         {
             bool resultado = false;
-            Mensaje = string.Empty;
+            mensaje = string.Empty;
 
             try
             {
@@ -125,15 +119,13 @@ namespace CapaDatos
 
                     oConexion.Open();
                     cmd.ExecuteNonQuery();
-
-                    Mensaje = "Rol eliminado correctamente.";
+                    mensaje = "Rol eliminado correctamente.";
                     resultado = true;
                 }
             }
             catch (Exception ex)
             {
-                Mensaje = ex.Message;
-                resultado = false;
+                mensaje = ex.Message;
             }
 
             return resultado;

@@ -50,6 +50,7 @@
             </div>
             <div class="modal-body">
                 <input id="UsuarioID" type="hidden" value="0" />
+                <input id="PersonaID" type="hidden" value="0" />
                 <div class="mb-3">
                     <label for="cedula" class="form-label">Cédula</label>
                     <input type="number" class="form-control" id="cedula" autocomplete="off">
@@ -81,6 +82,8 @@
 @section scripts {
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/4.0.0/intro.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script>
         var tabladata;
 
@@ -148,80 +151,195 @@
                 abrirModal(data);
             });
 
-            $('#tabla tbody').on('click', '.btn-eliminar', function () {
+           $('#tabla tbody').on('click', '.btn-eliminar', function () {
                 var data = tabladata.row($(this).parents('tr')).data();
-                eliminarUsuario(data.UsuarioID);
+
+                // Confirmación antes de eliminar
+                Swal.fire({
+                    title: "¿Estás seguro?",
+                    text: "¡No podrás recuperar este usuario!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "¡Sí, eliminar!",
+                    cancelButtonText: "Cancelar",
+                    confirmButtonColor: "#d33",
+                    cancelButtonColor: "#3085d6"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Enviar solicitud al backend para eliminar
+                        $.ajax({
+                            url: '@Url.Action("EliminarUsuario", "Usuarios")',
+                            type: "POST",
+                            data: JSON.stringify({ usuarioID: data.UsuarioID, personaID: data.PersonaID }),
+                            dataType: "json",
+                            contentType: "application/json; charset=utf-8",
+                            success: function (response) {
+                                if (response.resultado) {
+                                    Swal.fire("¡Eliminado!", response.mensaje, "success");
+                                    tabladata.ajax.reload(); // Recargar la tabla
+                                } else {
+                                    Swal.fire("Error", response.mensaje, "error");
+                                }
+                            },
+                            error: function (error) {
+                                Swal.fire("Error", "Hubo un problema con la solicitud.", "error");
+                            }
+                        });
+                    }
+                });
             });
+
+
 
             $('#tabla tbody').on('click', '.btn-restablecer', function () {
                 var data = tabladata.row($(this).parents('tr')).data();
-                restablecerContrasena(data.UsuarioID);
+                        swal({
+                            title: "¿Estás seguro?",
+                            text: "Se enviará un correo al usuario con una nueva contraseña.",
+                            type: "warning",
+                            showCancelButton: true,
+                            confirmButtonClass: "btn-danger",
+                            confirmButtonText: "¡Sí, restablecer!",
+                            closeOnConfirm: false
+                        }, function () {
+                            $.ajax({
+                                url: '@Url.Action("RestablcerContrasena", "Usuario")',
+                                type: "POST",
+                                data: JSON.stringify({ usuarioID: data.UsuarioID }),
+                                dataType: "json",
+                                contentType: "application/json; charset=utf-8",
+                                success: function (data) {
+
+
+                                    if (data.resultado) {
+                                        swal("¡Restablecido!", "Se ha enviado una nueva contraseña al usuario.", "success");
+                                    } else {
+                                        swal("Error", data.mensaje, "error");
+                                    }
+                                },
+                                error: function (error) {
+
+                                    swal("Error", "Hubo un problema con la solicitud.", "error");
+                                }
+                            });
+                        });
             });
+
+
         });
 
         function abrirModal(data) {
-            $("#UsuarioID").val(data ? data.UsuarioID : 0);
-            $("#cedula").val(data ? data.oPersonas.Cedula : "");
-            $("#nombre").val(data ? data.oPersonas.NombreCompleto : "");
-            $("#correo").val(data ? data.oPersonas.Correo : "");
-            $("#rolID").val(data ? data.oRoles.Nombre : 0);
+            // Reiniciar valores del modal
+            $("#UsuarioID").val(0);
+            $("#PersonaID").val(0);
+            $("#cedula").val("");
+            $("#nombre").val("");
+            $("#correo").val("");
+            $("#rolID").val(0);
 
             $("#mensajeError").hide();
-            $("#FormModal").modal("show");
-        }
 
-        function guardarUsuario() {
-            var usuario = {
-                UsuarioID: $("#UsuarioID").val(),
-                Cedula: $("#cedula").val(),
-                NombreCompleto: $("#nombre").val(),
-                Correo: $("#correo").val(),
-                RolID: $("#rolID").val()
-            };
-
-            if (!usuario.Cedula || !usuario.NombreCompleto || !usuario.Correo || usuario.RolID == 0) {
-                $("#mensajeError").show();
-                return;
+            if (data != null) {
+                // Caso de edición: llenar el formulario con los datos del usuario
+                $("#exampleModalLabel").text("Editar Usuario"); // Cambiar título del modal
+                $("#UsuarioID").val(data.UsuarioID);
+                $("#PersonaID").val(data.PersonaID);
+                $("#cedula").val(data.oPersonas.Cedula);
+                $("#nombre").val(data.oPersonas.NombreCompleto);
+                $("#correo").val(data.oPersonas.Correo);
+                $("#rolID").val(data.oRoles.RolID);
+            } else {
+                // Caso de creación: limpiar el formulario
+                $("#exampleModalLabel").text("Agregar Usuario"); // Cambiar título del modal
             }
 
-            $.ajax({
-                url: '@Url.Action("GuardarUsuario", "Usuarios")',
-                type: "POST",
-                data: JSON.stringify(usuario),
-                contentType: "application/json; charset=utf-8",
-                success: function (data) {
-                    if (data.resultado) {
-                        tabladata.ajax.reload();
-                        $("#FormModal").modal("hide");
-                    } else {
-                        alert(data.mensaje);
-                    }
+            fetchRoles(); // Obtener los roles disponibles y cargar en el select
+            $("#FormModal").modal("show"); // Mostrar el modal
+        }
+
+
+
+
+            function fetchRoles() {
+                console.log("Fetching roles");
+
+                    $.ajax({
+                        url: '@Url.Action("ListarRoles", "Roles")',
+                        type: "GET",
+                        success: function (data) {
+                            // Limpia y rellena el select de roles
+                            let rolSelect = $("#rolID");
+                            rolSelect.empty(); // Limpia las opciones actuales
+                            rolSelect.append('<option selected value="0">Seleccione un Rol</option>');
+
+                            // Itera sobre la lista de roles y agrega opciones al select
+                            $.each(data, function (index, item) {
+                                rolSelect.append($('<option>', {
+                                    value: item.RolID,
+                                    text: item.Nombre // Asume que 'Nombre' es el nombre del rol
+                                }));
+                            });
+
+                            // Si estamos editando, selecciona el rol previamente guardado
+                            if ($("#UsuarioID").val() != 0) {
+                                const rolSeleccionado = $("#rolID").attr("data-selected");
+                                if (rolSeleccionado) {
+                                    rolSelect.val(rolSeleccionado);
+                                }
+                            }
+                        },
+                        error: function (error) {
+                            console.error("Error al obtener los roles:", error);
+                            alert("No se pudieron cargar los roles. Intenta nuevamente.");
+                        }
+                    });
+             }
+
+            function guardarUsuario() {
+                var usuario = {
+                    UsuarioID: $("#UsuarioID").val(),
+                    PersonaID: $("#PersonaID").val(),
+                    oPersonas: {
+                        Cedula: $("#cedula").val(),
+                        NombreCompleto: $("#nombre").val(),
+                        Correo: $("#correo").val()
+                    },
+                    RolID: $("#rolID").val(),
+                    Activo: true // Puedes ajustar esto si es editable
+                };
+
+                // Validar campos obligatorios
+                if (!usuario.oPersonas.Cedula || !usuario.oPersonas.NombreCompleto || !usuario.oPersonas.Correo || usuario.RolID == 0) {
+                    $("#mensajeError").show();
+                    return;
                 }
-            });
-        }
 
-        function eliminarUsuario(usuarioID) {
-            if (confirm("¿Está seguro de eliminar este usuario?")) {
-                $.post('@Url.Action("EliminarUsuario", "Usuarios")', { id: usuarioID }, function (data) {
-                    if (data.resultado) {
-                        tabladata.ajax.reload();
-                    } else {
-                        alert(data.mensaje);
+                // Decide si es una edición o un registro nuevo
+                let url = usuario.UsuarioID == 0
+                    ? '@Url.Action("GuardarUsuario", "Usuarios")'
+                    : '@Url.Action("EditarUsuario", "Usuarios")';
+
+                // Enviar la solicitud al controlador
+                $.ajax({
+                    url: url,
+                    type: "POST",
+                    data: JSON.stringify(usuario),
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        if (data.resultado) {
+                            tabladata.ajax.reload(); // Recargar la tabla
+                            $("#FormModal").modal("hide");
+                        } else {
+                            alert(data.mensaje);
+                        }
+                    },
+                    error: function (error) {
+                        alert("Error al guardar el usuario. Intente nuevamente.");
                     }
                 });
             }
-        }
 
-        function restablecerContrasena(usuarioID) {
-            if (confirm("¿Está seguro de restablecer la contraseña?")) {
-                $.post('@Url.Action("RestablecerContrasena", "Acceso")', { id: usuarioID }, function (data) {
-                    if (data.resultado) {
-                        alert("Se ha enviado un correo al usuario con la nueva contraseña.");
-                    } else {
-                        alert(data.mensaje);
-                    }
-                });
-            }
-        }
+
+
     </script>
 }

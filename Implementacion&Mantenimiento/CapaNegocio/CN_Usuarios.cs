@@ -37,10 +37,11 @@ namespace CapaNegocio
         }
 
 
-        public bool Editar(Usuarios obj, out string Mensaje)
+        public bool Editar(Usuarios obj, out string mensaje)
         {
-            return objCapaDato.Editar(obj, out Mensaje);
+            return objCapaDato.Editar(obj, out mensaje);
         }
+
 
         public bool Eliminar(int personaID, int usuarioID, out string Mensaje)
         {

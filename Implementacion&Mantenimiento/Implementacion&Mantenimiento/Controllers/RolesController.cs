@@ -1,29 +1,50 @@
-﻿using CapaDatos;
+﻿using CapaEntidad;
 using CapaNegocio;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using CapaEntidad;
 
 namespace Implementacion_Mantenimiento.Controllers
 {
     [Authorize]
     public class RolesController : Controller
     {
-        // GET: Roles
+        private CN_Roles negocioRoles = new CN_Roles();
+
+        // Vista de la gestión de roles
         public ActionResult Index()
         {
             return View();
         }
 
+        [HttpGet]
         public JsonResult ListarRoles()
         {
-            CN_Roles negocioRoles = new CN_Roles();
-            List<Roles> listaRoles = negocioRoles.Listar();
-            return Json(listaRoles, JsonRequestBehavior.AllowGet);
+            List<Roles> lista = negocioRoles.Listar();
+            return Json(new { data = lista }, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
+        public JsonResult CrearRol(Roles obj)
+        {
+            string mensaje;
+            int resultado = negocioRoles.Crear(obj, out mensaje);
+            return Json(new { resultado = resultado > 0, mensaje });
+        }
+
+        [HttpPost]
+        public JsonResult ModificarRol(Roles obj)
+        {
+            string mensaje;
+            bool resultado = negocioRoles.Modificar(obj, out mensaje);
+            return Json(new { resultado, mensaje });
+        }
+
+        [HttpPost]
+        public JsonResult EliminarRol(int rolID)
+        {
+            string mensaje;
+            bool resultado = negocioRoles.Eliminar(rolID, out mensaje);
+            return Json(new { resultado, mensaje });
+        }
     }
 }

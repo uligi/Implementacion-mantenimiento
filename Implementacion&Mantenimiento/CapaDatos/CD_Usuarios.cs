@@ -91,10 +91,11 @@ namespace CapaDatos
         }
 
         // Método para editar un usuario junto con su persona
-        public bool Editar(Usuarios obj, out string Mensaje)
+        public bool Editar(Usuarios obj, out string mensaje)
         {
             bool resultado = false;
-            Mensaje = string.Empty;
+            mensaje = string.Empty;
+
             try
             {
                 using (SqlConnection oConexion = new SqlConnection(Conexion.cn))
@@ -109,23 +110,23 @@ namespace CapaDatos
                     cmd.Parameters.AddWithValue("@Telefono", obj.oPersonas.Telefono ?? (object)DBNull.Value);
                     cmd.Parameters.AddWithValue("@Direccion", obj.oPersonas.Direccion ?? (object)DBNull.Value);
                     cmd.Parameters.AddWithValue("@RolID", obj.RolID);
-                    cmd.Parameters.AddWithValue("@Contrasena", obj.Contrasena);
                     cmd.Parameters.AddWithValue("@Activo", obj.Activo);
 
                     oConexion.Open();
                     cmd.ExecuteNonQuery();
 
-                    Mensaje = "Usuario y persona actualizados correctamente.";
+                    mensaje = "Usuario actualizado correctamente.";
                     resultado = true;
                 }
             }
             catch (Exception ex)
             {
-                resultado = false;
-                Mensaje = ex.Message;
+                mensaje = ex.Message;
             }
+
             return resultado;
         }
+
 
         // Método para eliminar lógicamente un usuario junto con su persona
         public bool Eliminar(int personaID, int usuarioID, out string Mensaje)

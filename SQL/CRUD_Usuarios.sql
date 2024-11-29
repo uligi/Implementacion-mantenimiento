@@ -56,7 +56,7 @@ END;
 GO
 
 
-CREATE PROCEDURE spModificarPersonaYUsuario
+Create PROCEDURE spModificarPersonaYUsuario
     @PersonaID INT,
     @UsuarioID INT,
     @NombreCompleto NVARCHAR(100),
@@ -65,7 +65,6 @@ CREATE PROCEDURE spModificarPersonaYUsuario
     @Telefono NVARCHAR(15) = NULL,
     @Direccion TEXT = NULL,
     @RolID INT,
-    @Contrasena NVARCHAR(255),
     @Activo BIT
 AS
 BEGIN
@@ -85,13 +84,14 @@ BEGIN
     UPDATE Usuarios
     SET 
         RolID = @RolID,
-        Contrasena = @Contrasena,
         Activo = @Activo
     WHERE UsuarioID = @UsuarioID;
 
     SELECT 'Persona y Usuario actualizados correctamente' AS Mensaje;
 END;
 GO
+
+
 CREATE PROCEDURE spEliminarPersonaYUsuario
     @PersonaID INT,
     @UsuarioID INT

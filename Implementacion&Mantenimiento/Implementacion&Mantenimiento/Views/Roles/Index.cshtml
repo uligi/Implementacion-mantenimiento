@@ -1,8 +1,212 @@
-﻿
-@{
-    ViewBag.Title = "Index";
+﻿@{
+    ViewBag.Title = "Roles";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/4.0.0/introjs.min.css" rel="stylesheet">
+</head>
 
+<ol class="breadcrumb mb-4 mt-4">
+    <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Administrar</a></li>
+    <li class="breadcrumb-item active">Roles</li>
+</ol>
+
+<div class="card">
+    <div class="card-header">
+        <i class="fas fa-user-tag me-1"></i> Lista de Roles
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-12">
+                <button type="button" class="btn btn-success" onclick="abrirModal(null)">Agregar Rol</button>
+            </div>
+        </div>
+        <hr />
+        <table id="tablaRoles" class="table table-striped table-bordered nowrap" style="width:100%">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Activo</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="FormModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white">
+                <h5 class="modal-title" id="exampleModalLabel">Agregar Rol</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input id="RolID" type="hidden" value="0" />
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" autocomplete="off">
+                </div>
+                <div class="mb-3">
+                    <label for="descripcion" class="form-label">Descripción</label>
+                    <textarea class="form-control" id="descripcion" rows="3"></textarea>
+                </div>
+                <div class="alert alert-danger" id="mensajeError" style="display:none;">Todos los campos son obligatorios.</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="guardarRol()">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/4.0.0/intro.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        var tabladata;
+
+        $(document).ready(function () {
+            tabladata = $("#tablaRoles").DataTable({
+                responsive: true,
+                ordering: false,
+                "ajax": {
+                    url: '@Url.Action("ListarRoles", "Roles")',
+                    type: "GET",
+                    datatype: "json",
+                },
+                "columns": [
+                    { "data": "RolID" },
+                    { "data": "Nombre" },
+                    { "data": "Descripcion" },
+                    {
+                        "data": "Activo",
+                        "render": function (data) {
+                            if (data) {
+                                return '<span class="badge bg-success">Sí</span>';
+                            } else {
+                                return '<span class="badge bg-danger">No</span>';
+                            }
+                        }
+                    },
+                    {
+                        "defaultContent": '<div class="btn-group">' +
+                            '<button type="button" class="btn btn-primary btn-small btn-editar"><i class="fas fa-pen"></i></button>' +
+                            '<button type="button" class="btn btn-danger btn-small ms-2 btn-eliminar"><i class="fas fa-trash"></i></button>' +
+                            '</div>',
+                        "orderable": false,
+                        "searchable": false,
+                        "width": "150px"
+                    }
+                ],
+                "language": {
+                    "url": "https://cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json"
+                }
+            });
+
+            $('#tablaRoles tbody').on('click', '.btn-editar', function () {
+                var data = tabladata.row($(this).parents('tr')).data();
+                abrirModal(data);
+            });
+
+            $('#tablaRoles tbody').on('click', '.btn-eliminar', function () {
+                var data = tabladata.row($(this).parents('tr')).data();
+
+                Swal.fire({
+                    title: "¿Estás seguro?",
+                    text: "¡No podrás recuperar este rol!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "¡Sí, eliminar!",
+                    cancelButtonText: "Cancelar",
+                    confirmButtonColor: "#d33",
+                    cancelButtonColor: "#3085d6"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: '@Url.Action("EliminarRol", "Roles")',
+                            type: "POST",
+                            data: JSON.stringify({ rolID: data.RolID }),
+                            dataType: "json",
+                            contentType: "application/json; charset=utf-8",
+                            success: function (response) {
+                                if (response.resultado) {
+                                    Swal.fire("¡Eliminado!", response.mensaje, "success");
+                                    tabladata.ajax.reload();
+                                } else {
+                                    Swal.fire("Error", response.mensaje, "error");
+                                }
+                            },
+                            error: function (error) {
+                                Swal.fire("Error", "Hubo un problema con la solicitud.", "error");
+                            }
+                        });
+                    }
+                });
+            });
+        });
+
+        function abrirModal(data) {
+            $("#RolID").val(0);
+            $("#nombre").val("");
+            $("#descripcion").val("");
+            $("#mensajeError").hide();
+
+            if (data != null) {
+                $("#exampleModalLabel").text("Editar Rol");
+                $("#RolID").val(data.RolID);
+                $("#nombre").val(data.Nombre);
+                $("#descripcion").val(data.Descripcion);
+            } else {
+                $("#exampleModalLabel").text("Agregar Rol");
+            }
+
+            $("#FormModal").modal("show");
+        }
+
+        function guardarRol() {
+            var rol = {
+                RolID: $("#RolID").val(),
+                Nombre: $("#nombre").val(),
+                Descripcion: $("#descripcion").val(),
+                Activo: true // Puedes ajustar esto si es necesario
+            };
+
+            if (rol.Nombre.trim() === "" || rol.Descripcion.trim() === "") {
+                $("#mensajeError").show();
+                return;
+            }
+
+            var url = rol.RolID == 0
+                ? '@Url.Action("CrearRol", "Roles")'
+                : '@Url.Action("ModificarRol", "Roles")';
+
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: JSON.stringify(rol),
+                contentType: "application/json; charset=utf-8",
+                success: function (response) {
+                    if (response.resultado) {
+                        tabladata.ajax.reload();
+                        $("#FormModal").modal("hide");
+                    } else {
+                        Swal.fire("Error", response.mensaje, "error");
+                    }
+                },
+                error: function (error) {
+                    Swal.fire("Error", "Hubo un problema con la solicitud.", "error");
+                }
+            });
+        }
+    </script>
+}
