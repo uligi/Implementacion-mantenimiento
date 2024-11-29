@@ -9,6 +9,7 @@ using CapaEntidad;
 
 namespace Implementacion_Mantenimiento.Controllers
 {
+    [Authorize]
     public class RolesController : Controller
     {
         // GET: Roles

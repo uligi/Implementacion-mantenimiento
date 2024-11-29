@@ -9,6 +9,7 @@ using CapaNegocio;
 
 namespace Implementacion_Mantenimiento.Controllers
 {
+    [Authorize]
     public class UsuariosController : Controller
     {
         // GET: Usuarios
@@ -27,5 +28,6 @@ namespace Implementacion_Mantenimiento.Controllers
             return Json(oLista, JsonRequestBehavior.AllowGet);
         }
 
+ 
     }
 }

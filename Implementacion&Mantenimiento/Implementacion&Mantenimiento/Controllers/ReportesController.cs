@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace Implementacion_Mantenimiento.Controllers
 {
+    [Authorize]
     public class ReportesController : Controller
     {
         // GET: Reportes

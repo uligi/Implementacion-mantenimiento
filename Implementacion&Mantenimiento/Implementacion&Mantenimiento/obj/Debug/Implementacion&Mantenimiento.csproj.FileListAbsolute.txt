@@ -1,5 +1,3 @@
-C:\Users\ul13m\Documents\GitHub\Implementacion-mantenimiento\Implementacion&Mantenimiento\Implementacion&Mantenimiento\obj\Debug\Implementacion&Mantenimiento.csproj.AssemblyReference.cache
-C:\Users\ul13m\Documents\GitHub\Implementacion-mantenimiento\Implementacion&Mantenimiento\Implementacion&Mantenimiento\obj\Debug\Implementacion&Mantenimiento.csproj.CoreCompileInputs.cache
 C:\Users\ul13m\Documents\GitHub\Implementacion-mantenimiento\Implementacion&Mantenimiento\Implementacion&Mantenimiento\bin\Implementacion&Mantenimiento.dll.config
 C:\Users\ul13m\Documents\GitHub\Implementacion-mantenimiento\Implementacion&Mantenimiento\Implementacion&Mantenimiento\bin\Implementacion&Mantenimiento.dll
 C:\Users\ul13m\Documents\GitHub\Implementacion-mantenimiento\Implementacion&Mantenimiento\Implementacion&Mantenimiento\bin\Implementacion&Mantenimiento.pdb
@@ -101,6 +99,8 @@ C:\Users\ul13m\Documents\GitHub\Implementacion-mantenimiento\Implementacion&Mant
 C:\Users\ul13m\Documents\GitHub\Implementacion-mantenimiento\Implementacion&Mantenimiento\Implementacion&Mantenimiento\bin\es\System.Web.WebPages.Deployment.resources.dll
 C:\Users\ul13m\Documents\GitHub\Implementacion-mantenimiento\Implementacion&Mantenimiento\Implementacion&Mantenimiento\bin\es\System.Web.WebPages.Razor.resources.dll
 C:\Users\ul13m\Documents\GitHub\Implementacion-mantenimiento\Implementacion&Mantenimiento\Implementacion&Mantenimiento\bin\es\System.Web.Optimization.resources.dll
+C:\Users\ul13m\Documents\GitHub\Implementacion-mantenimiento\Implementacion&Mantenimiento\Implementacion&Mantenimiento\obj\Debug\Implementacion&Mantenimiento.csproj.AssemblyReference.cache
+C:\Users\ul13m\Documents\GitHub\Implementacion-mantenimiento\Implementacion&Mantenimiento\Implementacion&Mantenimiento\obj\Debug\Implementacion&Mantenimiento.csproj.CoreCompileInputs.cache
 C:\Users\ul13m\Documents\GitHub\Implementacion-mantenimiento\Implementacion&Mantenimiento\Implementacion&Mantenimiento\obj\Debug\Implemen.C09F4329.Up2Date
 C:\Users\ul13m\Documents\GitHub\Implementacion-mantenimiento\Implementacion&Mantenimiento\Implementacion&Mantenimiento\obj\Debug\Implementacion&Mantenimiento.dll
 C:\Users\ul13m\Documents\GitHub\Implementacion-mantenimiento\Implementacion&Mantenimiento\Implementacion&Mantenimiento\obj\Debug\Implementacion&Mantenimiento.pdb

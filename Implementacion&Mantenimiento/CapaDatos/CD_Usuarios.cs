@@ -28,6 +28,7 @@ namespace CapaDatos
                             {
                                 UsuarioID = Convert.ToInt32(dr["UsuarioID"]),
                                 Contrasena = (dr["Contrasena"].ToString()),
+                                RestablecerContrasena = Convert.ToBoolean(dr["RestablecerContrasena"]),
                                 PersonaID = Convert.ToInt32(dr["PersonaID"]),
                                 oPersonas = new Personas
                                 {
@@ -229,14 +230,15 @@ namespace CapaDatos
                     cmd.Parameters.AddWithValue("@UsuarioID", usuarioID);
                     cmd.Parameters.AddWithValue("@NuevaClave", nuevaClave);
 
-                    cmd.Parameters.Add("@Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
-                    cmd.Parameters.Add("@Resultado", SqlDbType.Bit).Direction = ParameterDirection.Output;
-
                     oConexion.Open();
-                    cmd.ExecuteNonQuery();
-
-                    mensaje = cmd.Parameters["@Mensaje"].Value.ToString();
-                    resultado = Convert.ToBoolean(cmd.Parameters["@Resultado"].Value);
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        if (dr.Read())
+                        {
+                            mensaje = dr["Mensaje"].ToString();
+                            resultado = Convert.ToBoolean(dr["Resultado"]);
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -246,6 +248,7 @@ namespace CapaDatos
 
             return resultado;
         }
+
 
 
     }

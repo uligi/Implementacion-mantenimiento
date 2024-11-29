@@ -114,9 +114,11 @@ END;
 GO
 
 
-CREATE PROCEDURE spCambiarClave
+Create PROCEDURE spCambiarClave
     @UsuarioID INT,
-    @NuevaClave VARCHAR(255)
+    @NuevaClave VARCHAR(255),
+    @Mensaje VARCHAR(500) OUTPUT,
+    @Resultado BIT OUTPUT
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -127,11 +129,18 @@ BEGIN
     WHERE UsuarioID = @UsuarioID AND Activo = 1;
 
     IF @@ROWCOUNT > 0
-        SELECT 'Contraseña actualizada correctamente' AS Mensaje, 1 AS Resultado;
+    BEGIN
+        SET @Mensaje = 'Contraseña actualizada correctamente';
+        SET @Resultado = 1;
+    END
     ELSE
-        SELECT 'No se pudo actualizar la contraseña. Verifique que el usuario esté activo.' AS Mensaje, 0 AS Resultado;
+    BEGIN
+        SET @Mensaje = 'No se pudo actualizar la contraseña. Verifique que el usuario esté activo.';
+        SET @Resultado = 0;
+    END
 END;
 GO
+
 
 CREATE PROCEDURE spRestablecerContrasena
     @UsuarioID INT,

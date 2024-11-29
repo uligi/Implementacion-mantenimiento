@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using CapaEntidad;
 using CapaNegocio;
+using System.Web.Security;
 
 namespace Implementacion_Mantenimiento.Controllers
 {
@@ -27,10 +28,12 @@ namespace Implementacion_Mantenimiento.Controllers
                 return View(); // Retorna la misma vista con el mensaje de error
             }
 
+            // Obtener la lista de usuarios desde la capa de negocio
+            var usuarios = usuarioNegocio.Listar();
+
             // Validar credenciales
             string hashedClave = CN_Recursos.ConvertirSha256(clave);
-            Usuarios oUsuario = usuarioNegocio.Listar()
-                .FirstOrDefault(u => u.oPersonas.Correo == correo && u.Contrasena == hashedClave);
+            Usuarios oUsuario = usuarios.FirstOrDefault(u => u.oPersonas.Correo == correo && u.Contrasena == hashedClave);
 
             if (oUsuario == null)
             {
@@ -38,11 +41,11 @@ namespace Implementacion_Mantenimiento.Controllers
                 return View(); // Retorna la misma vista con el mensaje de error
             }
 
-            // Redirigir a restablecer contraseña si es necesario
+            // Redirigir a cambiar clave si es necesario
             if (oUsuario.RestablecerContrasena)
             {
                 TempData["UsuarioID"] = oUsuario.UsuarioID;
-                return RedirectToAction("RestablecerContrasena","Acceso");
+                return RedirectToAction("CambiarClave", "Acceso", new { usuarioID = oUsuario.UsuarioID });
             }
 
             // Autenticación exitosa
@@ -53,6 +56,8 @@ namespace Implementacion_Mantenimiento.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+
+
 
 
         // Página de Registro
@@ -103,9 +108,9 @@ namespace Implementacion_Mantenimiento.Controllers
         }
 
         // Restablecer Contraseña
-        
+
         [HttpPost]
-        public ActionResult RestablecerContrasena(int usuarioID)
+        public ActionResult RestablecerContrasena(int usuarioID, string correo)
         {
             string mensaje;
             Usuarios usuario = usuarioNegocio.Listar().FirstOrDefault(u => u.UsuarioID == usuarioID);
@@ -116,7 +121,7 @@ namespace Implementacion_Mantenimiento.Controllers
                 return View();
             }
 
-            bool resultado = usuarioNegocio.RestablecerContrasena(usuarioID, usuario.oPersonas.Correo, out mensaje);
+            bool resultado = usuarioNegocio.RestablecerContrasena(usuarioID, correo, out mensaje);
 
             if (resultado)
             {
@@ -131,12 +136,25 @@ namespace Implementacion_Mantenimiento.Controllers
         }
 
 
-      
+
+        public ActionResult CambiarClave(int usuarioID)
+        {
+            ViewBag.UsuarioID = usuarioID; // Pasar el ID al ViewBag para la vista
+            return View();
+        }
+
 
 
         [HttpPost]
         public ActionResult CambiarClave(int usuarioID, string nuevaClave, string confirmarClave)
         {
+            if (string.IsNullOrEmpty(nuevaClave) || string.IsNullOrEmpty(confirmarClave))
+            {
+                ViewBag.Error = "Todos los campos son obligatorios.";
+                ViewBag.UsuarioID = usuarioID;
+                return View();
+            }
+
             if (nuevaClave != confirmarClave)
             {
                 ViewBag.Error = "Las contraseñas no coinciden.";
@@ -159,6 +177,24 @@ namespace Implementacion_Mantenimiento.Controllers
                 return View();
             }
         }
+
+        [HttpGet]
+        public JsonResult ObtenerUsuarioID(string correo)
+        {
+            // Buscar usuario por correo
+            Usuarios usuario = usuarioNegocio.Listar().FirstOrDefault(u => u.oPersonas.Correo == correo);
+
+            if (usuario != null)
+            {
+                return Json(new { usuarioID = usuario.UsuarioID }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(new { usuarioID = 0 }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
 
         // Cerrar Sesión
         public ActionResult CerrarSesion()
