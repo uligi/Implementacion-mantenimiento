@@ -21,13 +21,13 @@ namespace Implementacion_Mantenimiento.Controllers
         [HttpGet]
         public JsonResult ListarUsuarios()
         {
-            List<Usuarios> oLista = new List<Usuarios>();
+            var usuarios = new CN_Usuarios().Listar();
 
-            oLista = new CN_Usuarios().Listar();
-
-            return Json(oLista, JsonRequestBehavior.AllowGet);
+            // DataTables espera un objeto con la propiedad "data"
+            return Json(new { data = usuarios }, JsonRequestBehavior.AllowGet);
         }
 
- 
+
+
     }
 }

@@ -94,34 +94,31 @@
                      url: '@Url.Action("ListarUsuarios", "Usuarios")',
                      type: "GET",
                      datatype: "json",
-                     dataSrc: function (json) {
-                         return json.data;
-                     }        
-
                 },
 
                  "columns": [
                      {
                          "data": "oPersonas.Cedula",
-                         "render": function (data, type, row) {
-                         var cedulaStr = data.toString();
-                         if (cedulaStr.length === 9) {
-                             // Formato para cédula de 9 dígitos: 0-1506-0701
-                             return cedulaStr[0] + '-' + cedulaStr.slice(1, 5) + '-' + cedulaStr.slice(5);
-                         } else if (cedulaStr.length === 10) {
-                             // Formato para cédula de 10 dígitos: 1-1506-0701
-                             return cedulaStr[0] + '-' + cedulaStr.slice(1, 5) + '-' + cedulaStr.slice(5);
-                         } else {
-                             // En caso de longitud inesperada, devuelve la cédula sin formato
-                             return cedulaStr;
+                         "render": function (data) {
+                             var cedulaStr = data.toString();
+                                 if (cedulaStr.length === 9) {
+                                     // Formato para cédula de 9 dígitos: 0-1506-0701
+                                     return cedulaStr[0] + '-' + cedulaStr.slice(1, 5) + '-' + cedulaStr.slice(5);
+                                 } else if (cedulaStr.length === 10) {
+                                     // Formato para cédula de 10 dígitos: 1-1506-0701
+                                     return cedulaStr[0] + '-' + cedulaStr.slice(1, 5) + '-' + cedulaStr.slice(5);
+                                 } else {
+                                     // En caso de longitud inesperada, devuelve la cédula sin formato
+                                     return cedulaStr;
+                                 }
                          }
-                     }},
+                     },
                      { "data": "oPersonas.NombreCompleto" },
                      { "data": "oRoles.Nombre" },
                      { "data": "oPersonas.Correo" },
                      {
                          "data": "Activo",
-                         "render": function (data, type, row) {
+                         "render": function (data) {
                              if (data) {
                                  return '<span class="badge bg-success">Si</span>';
                              } else {

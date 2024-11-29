@@ -159,4 +159,4 @@ BEGIN
     ELSE
         SELECT 'No se pudo restablecer la contraseña. Verifique que el usuario esté activo.' AS Mensaje, 0 AS Resultado;
 END;
-GO
+
