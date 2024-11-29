@@ -11,15 +11,16 @@ namespace Implementacion_Mantenimiento
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                       "~/Scripts/jquery-{version}.js",
                       "~/Scripts/jquery-3.7.0.js",
-                      "~/Scripts/DataTables/jquery.dataTables.js",
-                      "~/Scripts/DataTables/dataTables.responsive.js",
+                    
                       "~/Scripts/Validaciones.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/complementos").Include(
                         "~/Scripts/fontawesome/all.min.js",
                         "~/Scripts/scripts.js",
                         "~/Scripts/loadingoverlay/loadingoverlay.min.js",
-                        "~/Scripts/sweetalert.min.js"
+                        "~/Scripts/sweetalert.min.js",
+                        "~/Scripts/DataTables/jquery.dataTables.js",
+                        "~/Scripts/DataTables/dataTables.responsive.js"
 
              ));
 

@@ -7,8 +7,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/4.0.0/introjs.min.css" rel="stylesheet">
-    <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">
-    <link href="https://cdn.datatables.net/responsive/2.4.1/css/responsive.bootstrap5.min.css" rel="stylesheet">
 </head>
 
 <ol class="breadcrumb mb-4 mt-4">
@@ -81,46 +79,72 @@
 </div>
 
 @section scripts {
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.4.1/js/dataTables.responsive.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.4.1/js/responsive.bootstrap5.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/4.0.0/intro.min.js"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/4.0.0/intro.min.js"></script>
     <script>
         var tabladata;
 
         $(document).ready(function () {
+
             tabladata = $("#tabla").DataTable({
+
                 responsive: true,
-                ajax: {
-                    url: '@Url.Action("ListarUsuarios", "Usuarios")',
-                    type: "GET",
-                    datatype: "json"
+                ordering: false,
+                 "ajax": {
+                     url: '@Url.Action("ListarUsuarios", "Usuarios")',
+                     type: "GET",
+                     datatype: "json",
+                     dataSrc: function (json) {
+                         return json.data;
+                     }        
+
                 },
-                columns: [
-                    { data: "oPersonas.Cedula" },
-                    { data: "oPersonas.NombreCompleto" },
-                    { data: "oRoles.Nombre" },
-                    { data: "oPersonas.Correo" },
-                    {
-                        data: "Activo",
-                        render: function (data) {
-                            return data ? '<span class="badge bg-success">Sí</span>' : '<span class="badge bg-danger">No</span>';
-                        }
-                    },
-                    {
-                        defaultContent:
-                            '<button class="btn btn-primary btn-sm btn-editar">Editar</button>' +
-                            '<button class="btn btn-danger btn-sm ms-2 btn-eliminar">Eliminar</button>' +
-                            '<button class="btn btn-info btn-sm ms-2 btn-restablecer">Restablecer Contraseña</button>'
-                    }
-                ],
-                language: {
-                    url: "//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json"
+
+                 "columns": [
+                     {
+                         "data": "oPersonas.Cedula",
+                         "render": function (data, type, row) {
+                         var cedulaStr = data.toString();
+                         if (cedulaStr.length === 9) {
+                             // Formato para cédula de 9 dígitos: 0-1506-0701
+                             return cedulaStr[0] + '-' + cedulaStr.slice(1, 5) + '-' + cedulaStr.slice(5);
+                         } else if (cedulaStr.length === 10) {
+                             // Formato para cédula de 10 dígitos: 1-1506-0701
+                             return cedulaStr[0] + '-' + cedulaStr.slice(1, 5) + '-' + cedulaStr.slice(5);
+                         } else {
+                             // En caso de longitud inesperada, devuelve la cédula sin formato
+                             return cedulaStr;
+                         }
+                     }},
+                     { "data": "oPersonas.NombreCompleto" },
+                     { "data": "oRoles.Nombre" },
+                     { "data": "oPersonas.Correo" },
+                     {
+                         "data": "Activo",
+                         "render": function (data, type, row) {
+                             if (data) {
+                                 return '<span class="badge bg-success">Si</span>';
+                             } else {
+                                 return '<span class="badge bg-danger">No</span>';
+                             }
+                         }
+                     },
+                     {
+                         "defaultContent": '<div class="btn-group">' +
+                             '<button type="button" class="btn btn-primary btn-small btn-editar"><i class="fas fa-pen"></i></button>' +
+                             '<button type="button" class="btn btn-danger btn-small ms-2 btn-eliminar"><i class="fas fa-trash"></i></button>' +
+                             '<button type="button" class="btn btn-info btn-small ms-2 btn-restablecer"><i class="fas fa-key"></i></button>' +
+                             '</div>',
+                         "orderable": false,
+                         "searchable": false,
+                         "width": "150px"
+                     }
+                 ],
+                "language": {
+                    "url": "https://cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json"
                 }
             });
+
 
             $('#tabla tbody').on('click', '.btn-editar', function () {
                 var data = tabladata.row($(this).parents('tr')).data();
@@ -193,7 +217,7 @@
 
         function restablecerContrasena(usuarioID) {
             if (confirm("¿Está seguro de restablecer la contraseña?")) {
-                $.post('@Url.Action("RestablecerContrasena", "Usuarios")', { id: usuarioID }, function (data) {
+                $.post('@Url.Action("RestablecerContrasena", "Acceso")', { id: usuarioID }, function (data) {
                     if (data.resultado) {
                         alert("Se ha enviado un correo al usuario con la nueva contraseña.");
                     } else {
