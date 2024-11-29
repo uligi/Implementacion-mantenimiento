@@ -137,5 +137,45 @@ namespace CapaDatos
 
             return resultado;
         }
+
+        public List<Proyectos> ReporteProyectos()
+        {
+            List<Proyectos> lista = new List<Proyectos>();
+
+            try
+            {
+                using (SqlConnection oConexion = new SqlConnection(Conexion.cn))
+                {
+                    SqlCommand cmd = new SqlCommand("spReporteProyectos", oConexion);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    oConexion.Open();
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            lista.Add(new Proyectos
+                            {
+                                ProyectoID = Convert.ToInt32(dr["ProyectoID"]),
+                                Nombre = dr["Nombre"].ToString(),
+                                Descripcion = dr["Descripcion"].ToString(),
+                                Estado = dr["Estado"].ToString(),
+                                FechaInicio = DateTime.Parse(dr["FechaInicio"].ToString()),
+                                FechaFin = string.IsNullOrEmpty(dr["FechaFin"].ToString())
+                                           ? (DateTime?)null
+                                           : DateTime.Parse(dr["FechaFin"].ToString()),
+                                Activo = dr["EstadoActivo"].ToString() == "Activo"
+                            });
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+
+            return lista;
+        }
     }
 }

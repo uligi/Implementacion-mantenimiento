@@ -1,8 +1,76 @@
-﻿
-@{
-    ViewBag.Title = "Reportes";
+﻿@{
+    ViewBag.Title = "Reporte de Proyectos";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Reportes</h2>
+<ol class="breadcrumb mb-4 mt-4">
+    <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Administrar</a></li>
+    <li class="breadcrumb-item active">Reporte de Proyectos</li>
+</ol>
 
+<div class="card">
+    <div class="card-header">
+        <i class="fas fa-chart-bar me-1"></i> Reporte de Proyectos
+    </div>
+    <div class="card-body">
+        <table id="tablaReporteProyectos" class="table table-striped table-bordered nowrap" style="width:100%">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Estado</th>
+                    <th>Fecha Inicio</th>
+                    <th>Fecha Fin</th>
+                    <th>Activo</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $("#tablaReporteProyectos").DataTable({
+                responsive: true,
+                ordering: false,
+                ajax: {
+                    url: '@Url.Action("ReporteProyectos", "Proyectos")',
+                    type: "GET",
+                    datatype: "json"
+                },
+                columns: [
+                    { data: "ProyectoID" },
+                    { data: "Nombre" },
+                    { data: "Descripcion" },
+                    { data: "Estado" },
+                    {
+                        data: "FechaInicio",
+                        render: function (data) {
+                            if (data) {
+                                const timestamp = parseInt(data.replace("/Date(", "").replace(")/", ""), 10);
+                                return new Date(timestamp).toLocaleDateString();
+                            }
+                            return "Sin fecha";
+                        } },
+                    {
+                        data: "FechaFin",
+                        render: function (data) {
+                            if (data) {
+                                const timestamp = parseInt(data.replace("/Date(", "").replace(")/", ""), 10);
+                                return new Date(timestamp).toLocaleDateString();
+                            }
+                            return "Sin fecha";
+                        } },
+                    { data: "Activo", render: function (data) {
+                        return data ? '<span class="badge bg-success">Sí</span>' : '<span class="badge bg-danger">No</span>';
+                    }}
+                ],
+                language: {
+                    url: "https://cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json"
+                }
+            });
+        });
+    </script>
+}

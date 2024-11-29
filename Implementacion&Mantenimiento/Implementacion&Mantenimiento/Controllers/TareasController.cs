@@ -50,5 +50,16 @@ namespace Implementacion_Mantenimiento.Controllers
         {
             return View();
         }
+
+        private CN_Tareas cn_tareas = new CN_Tareas();
+
+       
+
+        [HttpGet]
+        public JsonResult ReporteTareas()
+        {
+            List<Tareas> lista = cn_tareas.ReporteTareas();
+            return Json(new { data = lista }, JsonRequestBehavior.AllowGet);
+        }
     }
 }

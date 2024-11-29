@@ -45,5 +45,13 @@ namespace CapaNegocio
 
             return objCapaDatos.Eliminar(tareaID, out mensaje);
         }
+
+        private CD_Tareas cd_tareas = new CD_Tareas();
+
+        public List<Tareas> ReporteTareas()
+        {
+            return cd_tareas.ReporteTareas();
+        }
+
     }
 }

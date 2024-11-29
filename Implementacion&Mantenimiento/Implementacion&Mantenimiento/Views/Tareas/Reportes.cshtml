@@ -1,8 +1,72 @@
-﻿
-@{
-    ViewBag.Title = "Reportes";
+﻿@{
+    ViewBag.Title = "Reporte de Tareas";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Reportes</h2>
+<h2>Reporte de Tareas</h2>
 
+<div class="card">
+    <div class="card-header">
+        <i class="fas fa-tasks"></i> Detalle de Tareas
+    </div>
+    <div class="card-body">
+        <table id="tablaReporteTareas" class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Descripción</th>
+                    <th>Estado</th>
+                    <th>Fecha Inicio</th>
+                    <th>Fecha Fin</th>
+                    <th>Proyecto</th>
+                    <th>Asignado a</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+    $("#tablaReporteTareas").DataTable({
+        ajax: {
+            url: '@Url.Action("ReporteTareas", "Tareas")',
+            type: "GET",
+            datatype: "json"
+        },
+        columns: [
+            { data: "TareaID" },
+            { data: "Descripcion" },
+            { data: "Estado" },
+            {
+                data: "FechaInicio",
+                render: function (data) {
+                    if (data) {
+                        const timestamp = parseInt(data.replace("/Date(", "").replace(")/", ""), 10);
+                        return new Date(timestamp).toLocaleDateString();
+                    }
+                    return "Sin fecha";
+                }
+            },
+            {
+                data: "FechaFin",
+                render: function (data) {
+                    if (data) {
+                        const timestamp = parseInt(data.replace("/Date(", "").replace(")/", ""), 10);
+                        return new Date(timestamp).toLocaleDateString();
+                    }
+                    return "Sin fecha";
+                }
+            },
+            { data: "oProyectos.Nombre", defaultContent: "Sin Proyecto" },
+            { data: "oUsuarios.oPersonas.NombreCompleto", defaultContent: "Sin Asignar" }
+        ],
+        language: {
+            url: "https://cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json"
+        }
+    });
+});
+
+    </script>
+}

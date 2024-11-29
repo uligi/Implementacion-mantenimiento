@@ -52,5 +52,13 @@ namespace Implementacion_Mantenimiento.Controllers
         {
             return View();
         }
+
+
+        private CN_Proyectos _proyectosNegocio = new CN_Proyectos();
+        public JsonResult ReporteProyectos()
+        {
+            var lista = _proyectosNegocio.ObtenerReporteProyectos();
+            return Json(new { data = lista }, JsonRequestBehavior.AllowGet);
+        }
     }
 }

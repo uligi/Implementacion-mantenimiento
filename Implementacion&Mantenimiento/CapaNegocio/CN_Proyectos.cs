@@ -45,5 +45,11 @@ namespace CapaNegocio
 
             return objCapaDatos.Eliminar(proyectoID, out mensaje);
         }
+
+
+        public List<Proyectos> ObtenerReporteProyectos()
+        {
+            return objCapaDatos.ReporteProyectos();
+        }
     }
 }

@@ -53,3 +53,5 @@ BEGIN
     WHERE ProyectoID = @ProyectoID;
 END;
 GO
+ALTER TABLE Proyectos ADD CONSTRAINT CK_Proyectos_Estado CHECK (Estado IN ('Iniciado', 'En Proceso', 'Finalizado'));
+go

@@ -156,5 +156,58 @@ namespace CapaDatos
 
             return resultado;
         }
+
+        public List<Tareas> ReporteTareas()
+        {
+            List<Tareas> lista = new List<Tareas>();
+
+            try
+            {
+                using (SqlConnection oConexion = new SqlConnection(Conexion.cn))
+                {
+                    SqlCommand cmd = new SqlCommand("spReporteTareas", oConexion);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    oConexion.Open();
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            lista.Add(new Tareas
+                            {
+                                TareaID = Convert.ToInt32(dr["TareaID"]),
+                                Descripcion = dr["TareaDescripcion"].ToString(),
+                                Estado = dr["TareaEstado"].ToString(),
+                                FechaInicio = dr["TareaFechaInicio"] != DBNull.Value
+                                              ? Convert.ToDateTime(dr["TareaFechaInicio"])
+                                              : (DateTime?)null,
+                                FechaFin = dr["TareaFechaFin"] != DBNull.Value
+                                           ? Convert.ToDateTime(dr["TareaFechaFin"])
+                                           : (DateTime?)null,
+                                Activo = dr["EstadoActivo"].ToString() == "Activo",
+                                oProyectos = new Proyectos
+                                {
+                                    Nombre = dr["ProyectoNombre"].ToString()
+                                },
+                                oUsuarios = new Usuarios
+                                {
+                                    oPersonas = new Personas
+                                    {
+                                        NombreCompleto = dr["UsuarioAsignado"].ToString()
+                                    }
+                                }
+                            });
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+
+            return lista;
+        }
+
     }
 }

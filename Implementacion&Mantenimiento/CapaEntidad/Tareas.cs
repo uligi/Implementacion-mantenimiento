@@ -19,9 +19,9 @@ namespace CapaEntidad
 
         public int AsignadoA { get; set; }
 
-        public DateTime FechaInicio { get; set; }
+        public DateTime? FechaInicio { get; set; }
 
-        public DateTime FechaFin {  get; set; }
+        public DateTime? FechaFin {  get; set; }
 
         public bool Activo {  get; set; }
 
