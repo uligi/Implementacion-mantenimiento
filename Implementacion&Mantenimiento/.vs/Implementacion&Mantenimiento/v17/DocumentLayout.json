@@ -3,96 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\ul13m\\Documents\\GitHub\\Implementacion-mantenimiento\\Implementacion\u0026Mantenimiento\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E71FA147-EC6C-41BA-8328-6180122A5796}|CapaDatos\\CapaDatos.csproj|c:\\users\\ul13m\\documents\\github\\implementacion-mantenimiento\\implementacion\u0026mantenimiento\\capadatos\\cd_tareas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E71FA147-EC6C-41BA-8328-6180122A5796}|CapaDatos\\CapaDatos.csproj|solutionrelative:capadatos\\cd_tareas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{238BF027-4787-4E0F-A104-5100BE5FC29F}|CapaEntidad\\CapaEntidad.csproj|c:\\users\\ul13m\\documents\\github\\implementacion-mantenimiento\\implementacion\u0026mantenimiento\\capaentidad\\tareas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{238BF027-4787-4E0F-A104-5100BE5FC29F}|CapaEntidad\\CapaEntidad.csproj|solutionrelative:capaentidad\\tareas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E71FA147-EC6C-41BA-8328-6180122A5796}|CapaDatos\\CapaDatos.csproj|c:\\users\\ul13m\\documents\\github\\implementacion-mantenimiento\\implementacion\u0026mantenimiento\\capadatos\\cd_usuarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E71FA147-EC6C-41BA-8328-6180122A5796}|CapaDatos\\CapaDatos.csproj|solutionrelative:capadatos\\cd_usuarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{238BF027-4787-4E0F-A104-5100BE5FC29F}|CapaEntidad\\CapaEntidad.csproj|c:\\users\\ul13m\\documents\\github\\implementacion-mantenimiento\\implementacion\u0026mantenimiento\\capaentidad\\proyectos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{238BF027-4787-4E0F-A104-5100BE5FC29F}|CapaEntidad\\CapaEntidad.csproj|solutionrelative:capaentidad\\proyectos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{E436828F-B634-4E31-9D38-4B70DBE52584}|Implementacion\u0026Mantenimiento\\Implementacion\u0026Mantenimiento.csproj|c:\\users\\ul13m\\documents\\github\\implementacion-mantenimiento\\implementacion\u0026mantenimiento\\implementacion\u0026mantenimiento\\views\\tareas\\reportes.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{E436828F-B634-4E31-9D38-4B70DBE52584}|Implementacion\u0026Mantenimiento\\Implementacion\u0026Mantenimiento.csproj|solutionrelative:implementacion\u0026mantenimiento\\views\\tareas\\reportes.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E436828F-B634-4E31-9D38-4B70DBE52584}|Implementacion\u0026Mantenimiento\\Implementacion\u0026Mantenimiento.csproj|c:\\users\\ul13m\\documents\\github\\implementacion-mantenimiento\\implementacion\u0026mantenimiento\\implementacion\u0026mantenimiento\\views\\tareas\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E436828F-B634-4E31-9D38-4B70DBE52584}|Implementacion\u0026Mantenimiento\\Implementacion\u0026Mantenimiento.csproj|solutionrelative:implementacion\u0026mantenimiento\\views\\tareas\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E436828F-B634-4E31-9D38-4B70DBE52584}|Implementacion\u0026Mantenimiento\\Implementacion\u0026Mantenimiento.csproj|c:\\users\\ul13m\\documents\\github\\implementacion-mantenimiento\\implementacion\u0026mantenimiento\\implementacion\u0026mantenimiento\\controllers\\tareascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E436828F-B634-4E31-9D38-4B70DBE52584}|Implementacion\u0026Mantenimiento\\Implementacion\u0026Mantenimiento.csproj|solutionrelative:implementacion\u0026mantenimiento\\controllers\\tareascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0021DF23-2658-4380-B691-2C594EFAF756}|CapaNegocio\\CapaNegocio.csproj|c:\\users\\ul13m\\documents\\github\\implementacion-mantenimiento\\implementacion\u0026mantenimiento\\capanegocio\\cn_tareas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0021DF23-2658-4380-B691-2C594EFAF756}|CapaNegocio\\CapaNegocio.csproj|solutionrelative:capanegocio\\cn_tareas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E71FA147-EC6C-41BA-8328-6180122A5796}|CapaDatos\\CapaDatos.csproj|c:\\users\\ul13m\\documents\\github\\implementacion-mantenimiento\\implementacion\u0026mantenimiento\\capadatos\\cd_proyectos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E71FA147-EC6C-41BA-8328-6180122A5796}|CapaDatos\\CapaDatos.csproj|solutionrelative:capadatos\\cd_proyectos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E436828F-B634-4E31-9D38-4B70DBE52584}|Implementacion\u0026Mantenimiento\\Implementacion\u0026Mantenimiento.csproj|c:\\users\\ul13m\\documents\\github\\implementacion-mantenimiento\\implementacion\u0026mantenimiento\\implementacion\u0026mantenimiento\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E436828F-B634-4E31-9D38-4B70DBE52584}|Implementacion\u0026Mantenimiento\\Implementacion\u0026Mantenimiento.csproj|solutionrelative:implementacion\u0026mantenimiento\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E436828F-B634-4E31-9D38-4B70DBE52584}|Implementacion\u0026Mantenimiento\\Implementacion\u0026Mantenimiento.csproj|c:\\users\\ul13m\\documents\\github\\implementacion-mantenimiento\\implementacion\u0026mantenimiento\\implementacion\u0026mantenimiento\\views\\proyectos\\reportes.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{E436828F-B634-4E31-9D38-4B70DBE52584}|Implementacion\u0026Mantenimiento\\Implementacion\u0026Mantenimiento.csproj|solutionrelative:implementacion\u0026mantenimiento\\views\\proyectos\\reportes.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E436828F-B634-4E31-9D38-4B70DBE52584}|Implementacion\u0026Mantenimiento\\Implementacion\u0026Mantenimiento.csproj|c:\\users\\ul13m\\documents\\github\\implementacion-mantenimiento\\implementacion\u0026mantenimiento\\implementacion\u0026mantenimiento\\controllers\\proyectoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E436828F-B634-4E31-9D38-4B70DBE52584}|Implementacion\u0026Mantenimiento\\Implementacion\u0026Mantenimiento.csproj|solutionrelative:implementacion\u0026mantenimiento\\controllers\\proyectoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0021DF23-2658-4380-B691-2C594EFAF756}|CapaNegocio\\CapaNegocio.csproj|c:\\users\\ul13m\\documents\\github\\implementacion-mantenimiento\\implementacion\u0026mantenimiento\\capanegocio\\cn_proyectos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0021DF23-2658-4380-B691-2C594EFAF756}|CapaNegocio\\CapaNegocio.csproj|solutionrelative:capanegocio\\cn_proyectos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E436828F-B634-4E31-9D38-4B70DBE52584}|Implementacion\u0026Mantenimiento\\Implementacion\u0026Mantenimiento.csproj|c:\\users\\ul13m\\documents\\github\\implementacion-mantenimiento\\implementacion\u0026mantenimiento\\implementacion\u0026mantenimiento\\views\\roles\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E436828F-B634-4E31-9D38-4B70DBE52584}|Implementacion\u0026Mantenimiento\\Implementacion\u0026Mantenimiento.csproj|solutionrelative:implementacion\u0026mantenimiento\\views\\roles\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E436828F-B634-4E31-9D38-4B70DBE52584}|Implementacion\u0026Mantenimiento\\Implementacion\u0026Mantenimiento.csproj|C:\\Users\\ul13m\\Documents\\GitHub\\Implementacion-mantenimiento\\Implementacion\u0026Mantenimiento\\implementacion\u0026mantenimiento\\views\\usuarios\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E436828F-B634-4E31-9D38-4B70DBE52584}|Implementacion\u0026Mantenimiento\\Implementacion\u0026Mantenimiento.csproj|solutionrelative:implementacion\u0026mantenimiento\\views\\usuarios\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{E436828F-B634-4E31-9D38-4B70DBE52584}|Implementacion\u0026Mantenimiento\\Implementacion\u0026Mantenimiento.csproj|c:\\users\\ul13m\\documents\\github\\implementacion-mantenimiento\\implementacion\u0026mantenimiento\\implementacion\u0026mantenimiento\\views\\proyectos\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{E436828F-B634-4E31-9D38-4B70DBE52584}|Implementacion\u0026Mantenimiento\\Implementacion\u0026Mantenimiento.csproj|solutionrelative:implementacion\u0026mantenimiento\\views\\proyectos\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E436828F-B634-4E31-9D38-4B70DBE52584}|Implementacion\u0026Mantenimiento\\Implementacion\u0026Mantenimiento.csproj|c:\\users\\ul13m\\documents\\github\\implementacion-mantenimiento\\implementacion\u0026mantenimiento\\implementacion\u0026mantenimiento\\controllers\\rolescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E436828F-B634-4E31-9D38-4B70DBE52584}|Implementacion\u0026Mantenimiento\\Implementacion\u0026Mantenimiento.csproj|solutionrelative:implementacion\u0026mantenimiento\\controllers\\rolescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0021DF23-2658-4380-B691-2C594EFAF756}|CapaNegocio\\CapaNegocio.csproj|c:\\users\\ul13m\\documents\\github\\implementacion-mantenimiento\\implementacion\u0026mantenimiento\\capanegocio\\cn_roles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0021DF23-2658-4380-B691-2C594EFAF756}|CapaNegocio\\CapaNegocio.csproj|solutionrelative:capanegocio\\cn_roles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E71FA147-EC6C-41BA-8328-6180122A5796}|CapaDatos\\CapaDatos.csproj|c:\\users\\ul13m\\documents\\github\\implementacion-mantenimiento\\implementacion\u0026mantenimiento\\capadatos\\cd_roles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E71FA147-EC6C-41BA-8328-6180122A5796}|CapaDatos\\CapaDatos.csproj|solutionrelative:capadatos\\cd_roles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{238BF027-4787-4E0F-A104-5100BE5FC29F}|CapaEntidad\\CapaEntidad.csproj|c:\\users\\ul13m\\documents\\github\\implementacion-mantenimiento\\implementacion\u0026mantenimiento\\capaentidad\\roles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{238BF027-4787-4E0F-A104-5100BE5FC29F}|CapaEntidad\\CapaEntidad.csproj|solutionrelative:capaentidad\\roles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E436828F-B634-4E31-9D38-4B70DBE52584}|Implementacion\u0026Mantenimiento\\Implementacion\u0026Mantenimiento.csproj|C:\\Users\\ul13m\\Documents\\GitHub\\Implementacion-mantenimiento\\Implementacion\u0026Mantenimiento\\implementacion\u0026mantenimiento\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E436828F-B634-4E31-9D38-4B70DBE52584}|Implementacion\u0026Mantenimiento\\Implementacion\u0026Mantenimiento.csproj|solutionrelative:implementacion\u0026mantenimiento\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E436828F-B634-4E31-9D38-4B70DBE52584}|Implementacion\u0026Mantenimiento\\Implementacion\u0026Mantenimiento.csproj|c:\\users\\ul13m\\documents\\github\\implementacion-mantenimiento\\implementacion\u0026mantenimiento\\implementacion\u0026mantenimiento\\controllers\\accesocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E436828F-B634-4E31-9D38-4B70DBE52584}|Implementacion\u0026Mantenimiento\\Implementacion\u0026Mantenimiento.csproj|solutionrelative:implementacion\u0026mantenimiento\\controllers\\accesocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0021DF23-2658-4380-B691-2C594EFAF756}|CapaNegocio\\CapaNegocio.csproj|C:\\Users\\ul13m\\Documents\\GitHub\\Implementacion-mantenimiento\\Implementacion\u0026Mantenimiento\\capanegocio\\cn_usuarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0021DF23-2658-4380-B691-2C594EFAF756}|CapaNegocio\\CapaNegocio.csproj|solutionrelative:capanegocio\\cn_usuarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E436828F-B634-4E31-9D38-4B70DBE52584}|Implementacion\u0026Mantenimiento\\Implementacion\u0026Mantenimiento.csproj|c:\\users\\ul13m\\documents\\github\\implementacion-mantenimiento\\implementacion\u0026mantenimiento\\implementacion\u0026mantenimiento\\views\\tareas\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E436828F-B634-4E31-9D38-4B70DBE52584}|Implementacion\u0026Mantenimiento\\Implementacion\u0026Mantenimiento.csproj|solutionrelative:implementacion\u0026mantenimiento\\views\\tareas\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -102,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -118,301 +42,54 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "CD_Proyectos.cs",
-              "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Implementacion-mantenimiento\\Implementacion\u0026Mantenimiento\\CapaDatos\\CD_Proyectos.cs",
-              "RelativeDocumentMoniker": "CapaDatos\\CD_Proyectos.cs",
-              "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Implementacion-mantenimiento\\Implementacion\u0026Mantenimiento\\CapaDatos\\CD_Proyectos.cs",
-              "RelativeToolTip": "CapaDatos\\CD_Proyectos.cs",
-              "ViewState": "AQIAAJAAAAAAAAAAAAAiwKMAAAArAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-29T03:55:03.107Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "TareasController.cs",
-              "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Implementacion-mantenimiento\\Implementacion\u0026Mantenimiento\\Implementacion\u0026Mantenimiento\\Controllers\\TareasController.cs",
-              "RelativeDocumentMoniker": "Implementacion\u0026Mantenimiento\\Controllers\\TareasController.cs",
-              "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Implementacion-mantenimiento\\Implementacion\u0026Mantenimiento\\Implementacion\u0026Mantenimiento\\Controllers\\TareasController.cs",
-              "RelativeToolTip": "Implementacion\u0026Mantenimiento\\Controllers\\TareasController.cs",
-              "ViewState": "AQIAACMAAAAAAAAAAAAIwDcAAAAHAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-29T03:38:24.193Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "CN_Tareas.cs",
-              "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Implementacion-mantenimiento\\Implementacion\u0026Mantenimiento\\CapaNegocio\\CN_Tareas.cs",
-              "RelativeDocumentMoniker": "CapaNegocio\\CN_Tareas.cs",
-              "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Implementacion-mantenimiento\\Implementacion\u0026Mantenimiento\\CapaNegocio\\CN_Tareas.cs",
-              "RelativeToolTip": "CapaNegocio\\CN_Tareas.cs",
-              "ViewState": "AQIAABwAAAAAAAAAAAAswDUAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-29T03:38:12.13Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "CD_Tareas.cs",
-              "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Implementacion-mantenimiento\\Implementacion\u0026Mantenimiento\\CapaDatos\\CD_Tareas.cs",
-              "RelativeDocumentMoniker": "CapaDatos\\CD_Tareas.cs",
-              "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Implementacion-mantenimiento\\Implementacion\u0026Mantenimiento\\CapaDatos\\CD_Tareas.cs",
-              "RelativeToolTip": "CapaDatos\\CD_Tareas.cs",
-              "ViewState": "AQIAAKIAAAAAAAAAAADwv9IAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-29T03:37:51.916Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Implementacion-mantenimiento\\Implementacion\u0026Mantenimiento\\Implementacion\u0026Mantenimiento\\Views\\Roles\\Index.cshtml",
-              "RelativeDocumentMoniker": "Implementacion\u0026Mantenimiento\\Views\\Roles\\Index.cshtml",
-              "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Implementacion-mantenimiento\\Implementacion\u0026Mantenimiento\\Implementacion\u0026Mantenimiento\\Views\\Roles\\Index.cshtml",
-              "RelativeToolTip": "Implementacion\u0026Mantenimiento\\Views\\Roles\\Index.cshtml",
-              "ViewState": "AQIAAK8AAAAAAAAAAAAuwNQAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-29T03:27:20.291Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "CN_Proyectos.cs",
-              "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Implementacion-mantenimiento\\Implementacion\u0026Mantenimiento\\CapaNegocio\\CN_Proyectos.cs",
-              "RelativeDocumentMoniker": "CapaNegocio\\CN_Proyectos.cs",
-              "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Implementacion-mantenimiento\\Implementacion\u0026Mantenimiento\\CapaNegocio\\CN_Proyectos.cs",
-              "RelativeToolTip": "CapaNegocio\\CN_Proyectos.cs",
-              "ViewState": "AQIAABoAAAAAAAAAAAA9wDQAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-29T03:55:09.997Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Proyectos.cs",
-              "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Implementacion-mantenimiento\\Implementacion\u0026Mantenimiento\\CapaEntidad\\Proyectos.cs",
-              "RelativeDocumentMoniker": "CapaEntidad\\Proyectos.cs",
-              "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Implementacion-mantenimiento\\Implementacion\u0026Mantenimiento\\CapaEntidad\\Proyectos.cs",
-              "RelativeToolTip": "CapaEntidad\\Proyectos.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAXAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-29T03:54:54.602Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Implementacion-mantenimiento\\Implementacion\u0026Mantenimiento\\Implementacion\u0026Mantenimiento\\Views\\Tareas\\Index.cshtml",
-              "RelativeDocumentMoniker": "Implementacion\u0026Mantenimiento\\Views\\Tareas\\Index.cshtml",
-              "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Implementacion-mantenimiento\\Implementacion\u0026Mantenimiento\\Implementacion\u0026Mantenimiento\\Views\\Tareas\\Index.cshtml",
-              "RelativeToolTip": "Implementacion\u0026Mantenimiento\\Views\\Tareas\\Index.cshtml",
-              "ViewState": "AQIAAHAAAAAAAAAAAAAuwIcAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-29T03:38:35.518Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Reportes.cshtml",
-              "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Implementacion-mantenimiento\\Implementacion\u0026Mantenimiento\\Implementacion\u0026Mantenimiento\\Views\\Tareas\\Reportes.cshtml",
-              "RelativeDocumentMoniker": "Implementacion\u0026Mantenimiento\\Views\\Tareas\\Reportes.cshtml",
-              "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Implementacion-mantenimiento\\Implementacion\u0026Mantenimiento\\Implementacion\u0026Mantenimiento\\Views\\Tareas\\Reportes.cshtml",
-              "RelativeToolTip": "Implementacion\u0026Mantenimiento\\Views\\Tareas\\Reportes.cshtml",
-              "ViewState": "AQIAABAAAAAAAAAAAAAAADUAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-29T05:03:49.728Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Tareas.cs",
-              "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Implementacion-mantenimiento\\Implementacion\u0026Mantenimiento\\CapaEntidad\\Tareas.cs",
-              "RelativeDocumentMoniker": "CapaEntidad\\Tareas.cs",
-              "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Implementacion-mantenimiento\\Implementacion\u0026Mantenimiento\\CapaEntidad\\Tareas.cs",
-              "RelativeToolTip": "CapaEntidad\\Tareas.cs",
-              "ViewState": "AQIAAAUAAAAAAAAAAAAgwCEAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-29T03:37:39.352Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "CD_Usuarios.cs",
-              "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Implementacion-mantenimiento\\Implementacion\u0026Mantenimiento\\CapaDatos\\CD_Usuarios.cs",
-              "RelativeDocumentMoniker": "CapaDatos\\CD_Usuarios.cs",
-              "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Implementacion-mantenimiento\\Implementacion\u0026Mantenimiento\\CapaDatos\\CD_Usuarios.cs",
-              "RelativeToolTip": "CapaDatos\\CD_Usuarios.cs",
-              "ViewState": "AQIAAFwAAAAAAAAAAAAswIAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-29T01:08:58.413Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Implementacion-mantenimiento\\Implementacion\u0026Mantenimiento\\Implementacion\u0026Mantenimiento\\Views\\Proyectos\\Index.cshtml",
-              "RelativeDocumentMoniker": "Implementacion\u0026Mantenimiento\\Views\\Proyectos\\Index.cshtml",
-              "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Implementacion-mantenimiento\\Implementacion\u0026Mantenimiento\\Implementacion\u0026Mantenimiento\\Views\\Proyectos\\Index.cshtml",
-              "RelativeToolTip": "Implementacion\u0026Mantenimiento\\Views\\Proyectos\\Index.cshtml",
-              "ViewState": "AQIAAGMAAAAAAAAAAAAAAHYAAAAXAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-29T03:55:27.232Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Implementacion-mantenimiento\\Implementacion\u0026Mantenimiento\\Implementacion\u0026Mantenimiento\\Views\\Usuarios\\Index.cshtml",
-              "RelativeDocumentMoniker": "Implementacion\u0026Mantenimiento\\Views\\Usuarios\\Index.cshtml",
-              "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Implementacion-mantenimiento\\Implementacion\u0026Mantenimiento\\Implementacion\u0026Mantenimiento\\Views\\Usuarios\\Index.cshtml",
-              "RelativeToolTip": "Implementacion\u0026Mantenimiento\\Views\\Usuarios\\Index.cshtml",
-              "ViewState": "AQIAADQBAAAAAAAAAAAuwFkBAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-29T01:09:05.372Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
               "Title": "Reportes.cshtml",
               "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Implementacion-mantenimiento\\Implementacion\u0026Mantenimiento\\Implementacion\u0026Mantenimiento\\Views\\Proyectos\\Reportes.cshtml",
               "RelativeDocumentMoniker": "Implementacion\u0026Mantenimiento\\Views\\Proyectos\\Reportes.cshtml",
               "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Implementacion-mantenimiento\\Implementacion\u0026Mantenimiento\\Implementacion\u0026Mantenimiento\\Views\\Proyectos\\Reportes.cshtml",
               "RelativeToolTip": "Implementacion\u0026Mantenimiento\\Views\\Proyectos\\Reportes.cshtml",
-              "ViewState": "AQIAAAoAAAAAAAAAAAAqwDwAAAAAAAAA",
+              "ViewState": "AQIAACEAAAAAAAAAAAAAAEAAAAAZAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-29T05:03:18.94Z",
+              "WhenOpened": "2024-11-29T05:25:41.081Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Implementacion-mantenimiento\\Implementacion\u0026Mantenimiento\\Implementacion\u0026Mantenimiento\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "Implementacion\u0026Mantenimiento\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Implementacion-mantenimiento\\Implementacion\u0026Mantenimiento\\Implementacion\u0026Mantenimiento\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "Implementacion\u0026Mantenimiento\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AQIAAC0AAAAAAAAAAAAAADsAAABUAAAA",
+              "DocumentIndex": 2,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Implementacion-mantenimiento\\Implementacion\u0026Mantenimiento\\Implementacion\u0026Mantenimiento\\Views\\Proyectos\\Index.cshtml",
+              "RelativeDocumentMoniker": "Implementacion\u0026Mantenimiento\\Views\\Proyectos\\Index.cshtml",
+              "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Implementacion-mantenimiento\\Implementacion\u0026Mantenimiento\\Implementacion\u0026Mantenimiento\\Views\\Proyectos\\Index.cshtml",
+              "RelativeToolTip": "Implementacion\u0026Mantenimiento\\Views\\Proyectos\\Index.cshtml",
+              "ViewState": "AQIAAFcAAAAAAAAAAAAAAGIAAAAuAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-29T05:08:47.257Z",
+              "WhenOpened": "2024-11-29T05:25:38.402Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "ProyectosController.cs",
-              "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Implementacion-mantenimiento\\Implementacion\u0026Mantenimiento\\Implementacion\u0026Mantenimiento\\Controllers\\ProyectosController.cs",
-              "RelativeDocumentMoniker": "Implementacion\u0026Mantenimiento\\Controllers\\ProyectosController.cs",
-              "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Implementacion-mantenimiento\\Implementacion\u0026Mantenimiento\\Implementacion\u0026Mantenimiento\\Controllers\\ProyectosController.cs",
-              "RelativeToolTip": "Implementacion\u0026Mantenimiento\\Controllers\\ProyectosController.cs",
-              "ViewState": "AQIAAB8AAAAAAAAAAAAiwDgAAABEAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-29T03:55:17.73Z",
+              "DocumentIndex": 0,
+              "Title": "Reportes.cshtml",
+              "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Implementacion-mantenimiento\\Implementacion\u0026Mantenimiento\\Implementacion\u0026Mantenimiento\\Views\\Tareas\\Reportes.cshtml",
+              "RelativeDocumentMoniker": "Implementacion\u0026Mantenimiento\\Views\\Tareas\\Reportes.cshtml",
+              "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Implementacion-mantenimiento\\Implementacion\u0026Mantenimiento\\Implementacion\u0026Mantenimiento\\Views\\Tareas\\Reportes.cshtml",
+              "RelativeToolTip": "Implementacion\u0026Mantenimiento\\Views\\Tareas\\Reportes.cshtml",
+              "ViewState": "AQIAAB4AAAAAAAAAAAAAACcAAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-29T05:25:36.732Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "CN_Roles.cs",
-              "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Implementacion-mantenimiento\\Implementacion\u0026Mantenimiento\\CapaNegocio\\CN_Roles.cs",
-              "RelativeDocumentMoniker": "CapaNegocio\\CN_Roles.cs",
-              "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Implementacion-mantenimiento\\Implementacion\u0026Mantenimiento\\CapaNegocio\\CN_Roles.cs",
-              "RelativeToolTip": "CapaNegocio\\CN_Roles.cs",
-              "ViewState": "AQIAABMAAAAAAAAAAADwvycAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-29T02:38:38.383Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "Roles.cs",
-              "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Implementacion-mantenimiento\\Implementacion\u0026Mantenimiento\\CapaEntidad\\Roles.cs",
-              "RelativeDocumentMoniker": "CapaEntidad\\Roles.cs",
-              "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Implementacion-mantenimiento\\Implementacion\u0026Mantenimiento\\CapaEntidad\\Roles.cs",
-              "RelativeToolTip": "CapaEntidad\\Roles.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-29T03:26:29.301Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "AccesoController.cs",
-              "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Implementacion-mantenimiento\\Implementacion\u0026Mantenimiento\\Implementacion\u0026Mantenimiento\\Controllers\\AccesoController.cs",
-              "RelativeDocumentMoniker": "Implementacion\u0026Mantenimiento\\Controllers\\AccesoController.cs",
-              "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Implementacion-mantenimiento\\Implementacion\u0026Mantenimiento\\Implementacion\u0026Mantenimiento\\Controllers\\AccesoController.cs",
-              "RelativeToolTip": "Implementacion\u0026Mantenimiento\\Controllers\\AccesoController.cs",
-              "ViewState": "AQIAAKsAAAAAAAAAAAAkwM4AAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-29T03:18:09.65Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "CD_Roles.cs",
-              "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Implementacion-mantenimiento\\Implementacion\u0026Mantenimiento\\CapaDatos\\CD_Roles.cs",
-              "RelativeDocumentMoniker": "CapaDatos\\CD_Roles.cs",
-              "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Implementacion-mantenimiento\\Implementacion\u0026Mantenimiento\\CapaDatos\\CD_Roles.cs",
-              "RelativeToolTip": "CapaDatos\\CD_Roles.cs",
-              "ViewState": "AQIAAGIAAAAAAAAAAADwv4YAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-29T02:38:50.755Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "RolesController.cs",
-              "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Implementacion-mantenimiento\\Implementacion\u0026Mantenimiento\\Implementacion\u0026Mantenimiento\\Controllers\\RolesController.cs",
-              "RelativeDocumentMoniker": "Implementacion\u0026Mantenimiento\\Controllers\\RolesController.cs",
-              "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Implementacion-mantenimiento\\Implementacion\u0026Mantenimiento\\Implementacion\u0026Mantenimiento\\Controllers\\RolesController.cs",
-              "RelativeToolTip": "Implementacion\u0026Mantenimiento\\Controllers\\RolesController.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAkwDIAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-29T02:38:14.059Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "CN_Usuarios.cs",
-              "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Implementacion-mantenimiento\\Implementacion\u0026Mantenimiento\\CapaNegocio\\CN_Usuarios.cs",
-              "RelativeDocumentMoniker": "CapaNegocio\\CN_Usuarios.cs",
-              "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Implementacion-mantenimiento\\Implementacion\u0026Mantenimiento\\CapaNegocio\\CN_Usuarios.cs",
-              "RelativeToolTip": "CapaNegocio\\CN_Usuarios.cs",
-              "ViewState": "AQIAABoAAAAAAAAAAAAuwCsAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-29T01:09:00.76Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "UsuariosController.cs",
-              "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Implementacion-mantenimiento\\Implementacion\u0026Mantenimiento\\Implementacion\u0026Mantenimiento\\Controllers\\UsuariosController.cs",
-              "RelativeDocumentMoniker": "Implementacion\u0026Mantenimiento\\Controllers\\UsuariosController.cs",
-              "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Implementacion-mantenimiento\\Implementacion\u0026Mantenimiento\\Implementacion\u0026Mantenimiento\\Controllers\\UsuariosController.cs",
-              "RelativeToolTip": "Implementacion\u0026Mantenimiento\\Controllers\\UsuariosController.cs",
-              "ViewState": "AQIAABcAAAAAAAAAAADwvzoAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-29T01:08:51.432Z",
+              "DocumentIndex": 3,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Implementacion-mantenimiento\\Implementacion\u0026Mantenimiento\\Implementacion\u0026Mantenimiento\\Views\\Tareas\\Index.cshtml",
+              "RelativeDocumentMoniker": "Implementacion\u0026Mantenimiento\\Views\\Tareas\\Index.cshtml",
+              "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Implementacion-mantenimiento\\Implementacion\u0026Mantenimiento\\Implementacion\u0026Mantenimiento\\Views\\Tareas\\Index.cshtml",
+              "RelativeToolTip": "Implementacion\u0026Mantenimiento\\Views\\Tareas\\Index.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-29T05:25:36.176Z",
               "EditorCaption": ""
             }
           ]
