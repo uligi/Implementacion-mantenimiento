@@ -38,7 +38,7 @@ CREATE TABLE Proyectos (
     ProyectoID INT IDENTITY(1,1) PRIMARY KEY,
     Nombre VARCHAR(100) NOT NULL,
     Descripcion TEXT NOT NULL,
-    Estado VARCHAR(20) CHECK (Estado IN ('En desarrollo', 'Mantenimiento', 'Completado')) NOT NULL,
+    Estado VARCHAR(20) CHECK (Estado IN ('Iniciado', 'En Progreso', 'Finalizado')) NOT NULL,
     FechaInicio DATE NOT NULL,
     FechaFin DATE,
     Activo BIT DEFAULT 1 -- 1: Activo, 0: Inactivo
@@ -49,7 +49,7 @@ CREATE TABLE Tareas (
     TareaID INT IDENTITY(1,1) PRIMARY KEY,
     ProyectoID INT NOT NULL,
     Descripcion TEXT NOT NULL,
-    Estado VARCHAR(20) CHECK (Estado IN ('Pendiente', 'En progreso', 'Finalizada')) NOT NULL,
+    Estado VARCHAR(20) CHECK (Estado IN ('Pendiente', 'En progreso', 'Completada')) NOT NULL,
     AsignadoA INT NOT NULL,
     FechaInicio DATE NOT NULL,
     FechaFin DATE,
@@ -58,3 +58,5 @@ CREATE TABLE Tareas (
     CONSTRAINT FK_Tareas_Usuarios FOREIGN KEY (AsignadoA) REFERENCES Usuarios(UsuarioID)
 );
 GO
+
+
