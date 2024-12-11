@@ -26,6 +26,14 @@
     </div>
 </div>
 
+<div class="card-header">
+    <i class="fas fa-tasks"></i> Detalle de Tareas
+    <button id="btnExportarExcel" class="btn btn-success float-end">
+        <i class="fas fa-file-excel"></i> Exportar a Excel
+    </button>
+</div>
+
+
 @section scripts {
     <script>
         $(document).ready(function () {
@@ -66,7 +74,14 @@
             url: "https://cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json"
         }
     });
-});
+        });
+
+        $(document).ready(function () {
+             $("#btnExportarExcel").on("click", function () {
+        window.location.href = '@Url.Action("ExportarReporteTareas", "Tareas")';
+        });
+    });
+
 
     </script>
 }

@@ -260,40 +260,38 @@
 
 
 
-            function fetchRoles() {
-                console.log("Fetching roles");
+           function fetchRoles() {
+    console.log("Fetching roles");
 
-                    $.ajax({
-                        url: '@Url.Action("ListarRoles", "Roles")',
-                        type: "GET",
-                        success: function (data) {
-                            // Limpia y rellena el select de roles
-                            let rolSelect = $("#rolID");
-                            rolSelect.empty(); // Limpia las opciones actuales
-                            rolSelect.append('<option selected value="0">Seleccione un Rol</option>');
+    $.ajax({
+        url: '@Url.Action("ListarRoles", "Roles")',
+        type: "GET",
+        success: function (response) {
+            console.log("Roles obtenidos:", response);
 
-                            // Itera sobre la lista de roles y agrega opciones al select
-                            $.each(data, function (index, item) {
-                                rolSelect.append($('<option>', {
-                                    value: item.RolID,
-                                    text: item.Nombre // Asume que 'Nombre' es el nombre del rol
-                                }));
-                            });
+            let rolSelect = $("#rolID");
+            rolSelect.empty(); // Limpia las opciones actuales
+            rolSelect.append('<option selected value="0">Seleccione un Rol</option>');
 
-                            // Si estamos editando, selecciona el rol previamente guardado
-                            if ($("#UsuarioID").val() != 0) {
-                                const rolSeleccionado = $("#rolID").attr("data-selected");
-                                if (rolSeleccionado) {
-                                    rolSelect.val(rolSeleccionado);
-                                }
-                            }
-                        },
-                        error: function (error) {
-                            console.error("Error al obtener los roles:", error);
-                            alert("No se pudieron cargar los roles. Intenta nuevamente.");
-                        }
-                    });
-             }
+            if (response.data && Array.isArray(response.data)) {
+                response.data.forEach(function (role) {
+                    rolSelect.append($('<option>', {
+                        value: role.RolID,
+                        text: role.Nombre // Usa el campo Nombre del JSON para el texto
+                    }));
+                });
+            } else {
+                console.error("Formato de datos inesperado:", response);
+                alert("No se pudieron cargar los roles. Formato inesperado.");
+            }
+        },
+        error: function (error) {
+            console.error("Error al obtener los roles:", error);
+            alert("No se pudieron cargar los roles. Intenta nuevamente.");
+        }
+    });
+}
+
 
             function guardarUsuario() {
                 var usuario = {

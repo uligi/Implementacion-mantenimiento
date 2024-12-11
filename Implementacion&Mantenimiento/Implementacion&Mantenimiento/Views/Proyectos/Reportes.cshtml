@@ -28,6 +28,13 @@
         </table>
     </div>
 </div>
+<div class="card-header">
+    <i class="fas fa-chart-bar me-1"></i> Reporte de Proyectos
+    <button id="btnExportarExcel" class="btn btn-success float-end">
+        <i class="fas fa-file-excel"></i> Exportar a Excel
+    </button>
+</div>
+
 
 @section scripts {
     <script>
@@ -72,5 +79,12 @@
                 }
             });
         });
+
+        $(document).ready(function () {
+    $("#btnExportarExcel").on("click", function () {
+        window.location.href = '@Url.Action("ExportarReporteProyectos", "Proyectos")';
+    });
+});
+
     </script>
 }
